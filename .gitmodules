@@ -1,0 +1,3 @@
+[submodule "opencv-sys/gocv"]
+	path = opencv-sys/gocv
+	url = https://github.com/hybridgroup/gocv

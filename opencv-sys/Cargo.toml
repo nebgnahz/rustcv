@@ -1,0 +1,10 @@
+[package]
+name = "opencv-sys"
+version = "0.1.0"
+authors = ["Ben Zhang <benzh@cs.berkeley.edu>"]
+
+[dependencies]
+
+[build-dependencies]
+cc = "1.0"
+bindgen = "0.36"

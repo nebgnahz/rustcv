@@ -1,0 +1,11 @@
+[package]
+name = "rustcv"
+version = "0.1.0"
+authors = ["Ben Zhang <benzh@cs.berkeley.edu>"]
+
+[dependencies]
+failure = "0.1"
+opencv-sys = { path = "opencv-sys" }
+
+[workspace]
+members = ["opencv-sys"]
