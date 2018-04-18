@@ -1,0 +1,63 @@
+sudo: required
+dist: trusty
+
+language: rust
+rust:
+  - stable
+
+addons:
+  apt:
+    packages:
+    - build-essential
+    - cmake
+    - git
+    - libavcodec-dev
+    - libavformat-dev
+    - libdc1394-22-dev
+    - libgmp-dev
+    - libgtk2.0-dev
+    - libjasper-dev
+    - libjpeg-dev
+    - libleptonica-dev
+    - libpng-dev
+    - libswscale-dev
+    - libtbb-dev
+    - libtbb2
+    - libtesseract-dev
+    - libtiff-dev
+    - pkg-config
+    - tesseract-ocr
+    - xvfb
+
+before_install:
+  - export PATH="$PATH:$HOME/.cargo/bin"
+  - sudo -E ./.ci/install_cuda.sh
+  - sudo -E ./.ci/travis_build_opencv.sh
+  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu
+  - rustup component add rustfmt-preview
+
+script:
+  - cargo build
+  - cargo test
+  - cargo doc
+  - cargo fmt -- --write-mode=diff
+
+notifications:
+  email:
+    on_success: never
+
+cache:
+  timeout: 1000
+  cargo: true
+  directories:
+    - $HOME/usr/installed-version
+    - $HOME/usr/include
+    - $HOME/usr/lib
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: target/doc/
+  on:
+    branch: master
