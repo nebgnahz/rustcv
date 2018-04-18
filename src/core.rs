@@ -61,6 +61,25 @@ pub enum CvType {
     Cv64FC3 = 22,
 }
 
+/// Various border types, image boundaries are denoted with `|`.
+#[derive(Debug, Copy, Clone)]
+pub enum BorderType {
+    /// `iiiiii|abcdefgh|iiiiiii`  with some specified `i`
+    Constant = 0,
+    /// `aaaaaa|abcdefgh|hhhhhhh`
+    Replicate = 1,
+    /// `fedcba|abcdefgh|hgfedcb`
+    Reflect = 2,
+    /// `cdefgh|abcdefgh|abcdefg`
+    Wrap = 3,
+    /// `gfedcb|abcdefgh|gfedcba`
+    Reflect101 = 4,
+    /// `uvwxyz|abcdefgh|ijklmno`
+    Transparent = 5,
+    /// Do not look outside of ROI.
+    Isolated = 16,
+}
+
 impl From<ffi::Mat> for Mat {
     fn from(inner: ffi::Mat) -> Mat {
         Mat { inner: inner }
@@ -262,71 +281,193 @@ impl Mat {
         unsafe { ffi::Mat_GetDouble3(self.inner, x, y, z) }
     }
 
-    /// Returns a value from a specific row/col in this Mat (must be CV_8U).
-    pub fn set_uchar_at(&mut self, row: i32, col: i32) {
-        unsafe { ffi::Mat_SetUChar(self.inner, row, col) }
+    /// Sets a value to a specific row/col in this Mat (must be CV_8U).
+    pub fn set_uchar_at(&mut self, row: i32, col: i32, val: u8) {
+        unsafe { ffi::Mat_SetUChar(self.inner, row, col, val) }
     }
 
-    /// Returns a value from a specific x, y, z in this Mat (must be CV_8U).
-    pub fn set_uchar_at3(&mut self, x: i32, y: i32, z: i32) {
-        unsafe { ffi::Mat_SetUChar3(self.inner, x, y, z) }
+    /// Sets a value to a specific x, y, z in this Mat (must be CV_8U).
+    pub fn set_uchar_at3(&mut self, x: i32, y: i32, z: i32, val: u8) {
+        unsafe { ffi::Mat_SetUChar3(self.inner, x, y, z, val) }
     }
 
-    /// Returns a value from a specific row/col in this Mat (must be CV_8S).
-    pub fn set_schar_at(&mut self, row: i32, col: i32) {
-        unsafe { ffi::Mat_SetSChar(self.inner, row, col) }
+    /// Sets a value to a specific row/col in this Mat (must be CV_8S).
+    pub fn set_schar_at(&mut self, row: i32, col: i32, val: i8) {
+        unsafe { ffi::Mat_SetSChar(self.inner, row, col, val) }
     }
 
-    /// Returns a value from a specific x, y, z in this Mat (must be CV_8S).
-    pub fn set_schar_at3(&mut self, x: i32, y: i32, z: i32) {
-        unsafe { ffi::Mat_SetSChar3(self.inner, x, y, z) }
+    /// Sets a value to a specific x, y, z in this Mat (must be CV_8S).
+    pub fn set_schar_at3(&mut self, x: i32, y: i32, z: i32, val: i8) {
+        unsafe { ffi::Mat_SetSChar3(self.inner, x, y, z, val) }
     }
 
-    /// Returns a value from a specific row/col in this Mat (must be CV_16S).
-    pub fn set_short_at(&mut self, row: i32, col: i32) {
-        unsafe { ffi::Mat_SetShort(self.inner, row, col) }
+    /// Sets a value to a specific row/col in this Mat (must be CV_16S).
+    pub fn set_short_at(&mut self, row: i32, col: i32, val: i16) {
+        unsafe { ffi::Mat_SetShort(self.inner, row, col, val) }
     }
 
-    /// Returns a value from a specific x, y, z in this Mat (must be CV_16S).
-    pub fn set_short_at3(&mut self, x: i32, y: i32, z: i32) {
-        unsafe { ffi::Mat_SetShort3(self.inner, x, y, z) }
+    /// Sets a value to a specific x, y, z in this Mat (must be CV_16S).
+    pub fn set_short_at3(&mut self, x: i32, y: i32, z: i32, val: i16) {
+        unsafe { ffi::Mat_SetShort3(self.inner, x, y, z, val) }
     }
 
-    /// Returns a value from a specific row/col in this Mat (must be CV_32S).
-    pub fn set_int_at(&mut self, row: i32, col: i32) {
-        unsafe { ffi::Mat_SetInt(self.inner, row, col) }
+    /// Sets a value to a specific row/col in this Mat (must be CV_32S).
+    pub fn set_int_at(&mut self, row: i32, col: i32, val: i32) {
+        unsafe { ffi::Mat_SetInt(self.inner, row, col, val) }
     }
 
-    /// Returns a value from a specific x, y, z in this Mat (must be CV_32S).
-    pub fn set_int_at3(&mut self, x: i32, y: i32, z: i32) {
-        unsafe { ffi::Mat_SetInt3(self.inner, x, y, z) }
+    /// Sets a value to a specific x, y, z in this Mat (must be CV_32S).
+    pub fn set_int_at3(&mut self, x: i32, y: i32, z: i32, val: i32) {
+        unsafe { ffi::Mat_SetInt3(self.inner, x, y, z, val) }
     }
 
-    /// Returns a value from a specific row/col in this Mat (must be CV_32F).
-    pub fn set_float_at(&mut self, row: i32, col: i32) {
-        unsafe { ffi::Mat_SetFloat(self.inner, row, col) }
+    /// Sets a value to a specific row/col in this Mat (must be CV_32F).
+    pub fn set_float_at(&mut self, row: i32, col: i32, val: f32) {
+        unsafe { ffi::Mat_SetFloat(self.inner, row, col, val) }
     }
 
-    /// Returns a value from a specific x, y, z in this Mat (must be CV_32F).
-    pub fn set_float_at3(&mut self, x: i32, y: i32, z: i32) {
-        unsafe { ffi::Mat_SetFloat3(self.inner, x, y, z) }
+    /// Sets a value to a specific x, y, z in this Mat (must be CV_32F).
+    pub fn set_float_at3(&mut self, x: i32, y: i32, z: i32, val: f32) {
+        unsafe { ffi::Mat_SetFloat3(self.inner, x, y, z, val) }
     }
 
-    /// Returns a value from a specific row/col in this Mat (must be CV_64F).
-    pub fn set_double_at(&mut self, row: i32, col: i32) {
-        unsafe { ffi::Mat_SetDouble(self.inner, row, col) }
+    /// Sets a value to a specific row/col in this Mat (must be CV_64F).
+    pub fn set_double_at(&mut self, row: i32, col: i32, val: f64) {
+        unsafe { ffi::Mat_SetDouble(self.inner, row, col, val) }
     }
 
-    /// Returns a value from a specific x, y, z in this Mat (must be CV_64F).
-    pub fn set_double_at3(&mut self, x: i32, y: i32, z: i32) {
-        unsafe { ffi::Mat_SetDouble3(self.inner, x, y, z) }
+    /// Sets a value to a specific x, y, z in this Mat (must be CV_64F).
+    pub fn set_double_at3(&mut self, x: i32, y: i32, z: i32, val: f64) {
+        unsafe { ffi::Mat_SetDouble3(self.inner, x, y, z, val) }
     }
+}
 
-    /// Calculates the per-element absolute difference between two arrays or
-    /// between an array and a scalar.
-    fn abs_diff(&self, other: &Mat, dst: &mut Mat) {
-        unsafe { Mat_AbsDiff(self.inner, other.inner, dst.inner) }
+/// Calculates the per-element absolute difference between two arrays or
+/// between an array and a scalar.
+pub fn abs_diff(this: &Mat, other: &Mat, dst: &mut Mat) {
+    unsafe { ffi::Mat_AbsDiff(this.inner, other.inner, dst.inner) }
+}
+
+/// Calculates the per-element sum of two arrays or an array and a scalar.
+pub fn add(this: &Mat, other: &Mat, dst: &mut Mat) {
+    unsafe { ffi::Mat_AbsDiff(this.inner, other.inner, dst.inner) }
+}
+
+/// Calculates the weighted sum of two arrays.
+/// dst = src1*alpha + src2*beta + gamma;
+pub fn add_weighted(src1: &Mat, alpha: f64, src2: &Mat, beta: f64, gamma: f64, dst: &mut Mat) {
+    unsafe { ffi::Mat_AddWeighted(src1.inner, alpha, src2.inner, beta, gamma, dst.inner) }
+}
+
+/// Computes bitwise conjunction of the two arrays (dst = src1 & src2).
+pub fn bitwise_and(src1: &Mat, src2: &Mat, dst: &mut Mat) {
+    unsafe { ffi::Mat_BitwiseAnd(src1.inner, src2.inner, dst.inner) }
+}
+
+/// Inverts every bit of an array (dst = !src).
+pub fn bitwise_not(src: &Mat, dst: &mut Mat) {
+    unsafe { ffi::Mat_BitwiseNot(src.inner, dst.inner) }
+}
+
+/// Computes bitwise disjunction of the two arrays (dst = src1 | src2).
+pub fn bitwise_or(src1: &Mat, src2: &Mat, dst: &mut Mat) {
+    unsafe { ffi::Mat_BitwiseOr(src1.inner, src2.inner, dst.inner) }
+}
+
+/// Computes bitwise "exclusive or" of the two arrays (dst = src1 ^ src2).
+pub fn bitwise_xor(src1: &Mat, src2: &Mat, dst: &mut Mat) {
+    unsafe { ffi::Mat_BitwiseXor(src1.inner, src2.inner, dst.inner) }
+}
+
+/// A naive nearest neighbor finder.
+pub fn batch_distance(
+    src1: &Mat,
+    src2: &Mat,
+    dist: &Mat,
+    dtype: i32,
+    nidx: &Mat,
+    norm_type: i32,
+    k: i32,
+    mask: &Mat,
+    update: i32,
+    crosscheck: bool,
+) {
+    unsafe {
+        ffi::Mat_BatchDistance(
+            src1.inner,
+            src2.inner,
+            dist.inner,
+            dtype,
+            nidx.inner,
+            norm_type,
+            k,
+            mask.inner,
+            update,
+            crosscheck,
+        )
     }
+}
+
+/// Computes the source location of an extrapolated pixel.
+pub fn border_interpolate(p: i32, len: i32, t: BorderType) -> i32 {
+    unsafe { ffi::Mat_BorderInterpolate(p, len, t as i32) }
+}
+
+/// [Covariation flags](https://docs.opencv.org/master/d0/de1/group__core.html#ga719ebd4a73f30f4fab258ab7616d0f0f).
+#[derive(Copy, Clone, Debug)]
+pub enum CovarFlag {
+    /// The covariance matrix will be nsamples x nsamples. Such an unusual
+    /// covariance matrix is used for fast PCA of a set of very large vectors
+    /// (see, for example, the EigenFaces technique for face
+    /// recognition). Eigenvalues of this "scrambled" matrix match the
+    /// eigenvalues of the true covariance matrix. The "true" eigenvectors can
+    /// be easily calculated from the eigenvectors of the "scrambled" covariance
+    /// matrix.
+    Scrambled = 0,
+
+    /// covar will be a square matrix of the same size as the total number of
+    /// elements in each input vector. One and only one of COVAR_SCRAMBLED and
+    /// COVAR_NORMAL must be specified.
+    Normal = 1,
+
+    /// If the flag is specified, the function does not calculate mean from the
+    /// input vectors but, instead, uses the passed mean vector. This is useful
+    /// if mean has been pre-calculated or known in advance, or if the
+    /// covariance matrix is calculated by parts. In this case, mean is not a
+    /// mean vector of the input sub-set of vectors but rather the mean vector
+    /// of the whole set.
+    UseAvg = 2,
+
+    /// If the flag is specified, the covariance matrix is scaled. In the
+    /// "normal" mode, scale is 1./nsamples . In the "scrambled" mode, scale is
+    /// the reciprocal of the total number of elements in each input vector. By
+    /// default (if the flag is not specified), the covariance matrix is not
+    /// scaled ( scale=1 ).
+    Scale = 4,
+
+    /// If the flag is specified, all the input vectors are stored as rows of
+    /// the samples matrix. mean should be a single-row vector in this case.
+    Rows = 8,
+
+    /// If the flag is specified, all the input vectors are stored as columns of
+    /// the samples matrix. mean should be a single-column vector in this case.
+    Cols = 16,
+}
+
+/// Calculates the covariance matrix of a set of vectors.
+pub fn calc_covar_matrix(
+    samples: &Mat,
+    covar: &mut Mat,
+    mean: &mut Mat,
+    flags: CovarFlag,
+    ctype: i32,
+) {
+    unsafe { ffi::Mat_CalcCovarMatrix(samples.inner, covar.inner, mean.inner, flags as i32, ctype) }
+}
+
+/// Calculates the magnitude and angle of 2D vectors.
+pub fn cart_to_polar(x: &Mat, y: &Mat, magnitude: &mut Mat, angle: &mut Mat, use_degree: bool) {
+    unsafe { ffi::Mat_CartToPolar(x.inner, y.inner, magnitude.inner, angle.inner, use_degree) }
 }
 
 impl Clone for Mat {

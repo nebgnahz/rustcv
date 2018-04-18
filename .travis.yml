@@ -1,3 +1,6 @@
+env:
+  global:
+    - MAKEFLAGS="-j4"
 sudo: required
 dist: trusty
 
