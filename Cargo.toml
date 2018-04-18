@@ -6,6 +6,8 @@ authors = ["Ben Zhang <benzh@cs.berkeley.edu>"]
 [dependencies]
 failure = "0.1"
 opencv-sys = { path = "opencv-sys" }
+num-traits = "0.2"
+num-derive = "0.2"
 
 [workspace]
 members = ["opencv-sys"]

@@ -2,6 +2,7 @@
 //!
 //! [opencv-core]: https://docs.opencv.org/master/d0/de1/group__core.html
 use opencv_sys as ffi;
+use num_traits::FromPrimitive;
 
 /// The class `Mat` represents an n-dimensional dense numerical single-channel or multi-channel array.
 /// It can be used to store real or complex-valued vectors and matrices, grayscale or color images,
@@ -12,6 +13,7 @@ pub struct Mat {
 }
 
 pub use opencv_sys::Scalar;
+pub use opencv_sys::Rect;
 
 /// Here is the `CvType` in an easy-to-read table.
 ///
@@ -25,7 +27,7 @@ pub use opencv_sys::Scalar;
 /// | CV_32F |  5 | 13 | 21 | 29 |   37 |   45 |   53 |   61 |
 /// | CV_64F |  6 | 14 | 22 | 30 |   38 |   46 |   54 |   62 |
 #[repr(C)]
-#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash, FromPrimitive, ToPrimitive)]
 pub enum CvType {
     /// 8 bit unsigned, single channel (grey image)
     Cv8UC1 = 0,
@@ -127,6 +129,203 @@ impl Mat {
     pub fn to_bytes(&self) -> Vec<u8> {
         let array = unsafe { ffi::Mat_ToBytes(self.inner) };
         from_byte_array(&array)
+    }
+
+    /// Returns a new Mat that points to a region of this Mat. Changes made to
+    /// the region Mat will affect the original Mat, since they are pointers to
+    /// the underlying OpenCV Mat object.
+    pub fn region(&self, roi: Rect) -> Mat {
+        Mat::from(unsafe { ffi::Mat_Region(self.inner, roi) })
+    }
+
+    /// Changes the shape and/or the number of channels of a 2D matrix without
+    /// copying the data. The method makes a new matrix header for the internal
+    /// data.
+    pub fn reshape(&self, channel: i32, rows: i32) -> Mat {
+        Mat::from(unsafe { ffi::Mat_Reshape(self.inner, channel, rows) })
+    }
+
+    /// Converts a Mat to half-precision floating point.
+    ///
+    /// This function converts FP32 (single precision floating point) from/to
+    /// FP16 (half precision floating point). The input array has to have type
+    /// of CV_32F or CV_16S to represent the bit depth. If the input array is
+    /// neither of them, the function will raise an error. The format of half
+    /// precision floating point is defined in IEEE 754-2008.
+    pub fn convert_fp16(&self) -> Mat {
+        Mat::from(unsafe { ffi::Mat_ConvertFp16(self.inner) })
+    }
+
+    /// Calculates the mean value M of array elements, independently for each
+    /// channel, and return it as Scalar.
+    /// TODO: pass second paramter with mask
+    pub fn mean(&self) -> Scalar {
+        unsafe { ffi::Mat_Mean(self.inner) }
+    }
+
+    /// Calculates the per-channel pixel sum of an image.
+    pub fn sum(&self) -> Scalar {
+        unsafe { ffi::Mat_Sum(self.inner) }
+    }
+
+    /// Performs a look-up table transform of an array.
+    ///
+    /// The function LUT fills the output array with values from the look-up table.
+    /// Indices of the entries are taken from the input array.
+    pub fn lookup_table_transform(&self, table: &Mat, dst: &mut Mat) {
+        unsafe { ffi::LUT(self.inner, table.inner, dst.inner) }
+    }
+
+    /// Returns the number of rows for this Mat.
+    pub fn rows(&self) -> i32 {
+        unsafe { ffi::Mat_Rows(self.inner) }
+    }
+
+    /// Returns the number of cols for this Mat.
+    pub fn cols(&self) -> i32 {
+        unsafe { ffi::Mat_Cols(self.inner) }
+    }
+
+    /// Returns the number of channels for this Mat.
+    pub fn channels(&self) -> i32 {
+        unsafe { ffi::Mat_Channels(self.inner) }
+    }
+
+    /// Returns the type for this Mat.
+    pub fn cv_type(&self) -> CvType {
+        let t = unsafe { ffi::Mat_Type(self.inner) };
+        CvType::from_i32(t).expect("Unknown CvType")
+    }
+
+    /// Returns the number of bytes each matrix row occupies.
+    pub fn cv_step(&self) -> i32 {
+        unsafe { ffi::Mat_Step(self.inner) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_8U).
+    pub fn uchar_at(&self, row: i32, col: i32) -> u8 {
+        unsafe { ffi::Mat_GetUChar(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_8U).
+    pub fn uchar_at3(&self, x: i32, y: i32, z: i32) -> u8 {
+        unsafe { ffi::Mat_GetUChar3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_8S).
+    pub fn schar_at(&self, row: i32, col: i32) -> i8 {
+        unsafe { ffi::Mat_GetSChar(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_8S).
+    pub fn schar_at3(&self, x: i32, y: i32, z: i32) -> i8 {
+        unsafe { ffi::Mat_GetSChar3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_16S).
+    pub fn short_at(&self, row: i32, col: i32) -> i16 {
+        unsafe { ffi::Mat_GetShort(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_16S).
+    pub fn short_at3(&self, x: i32, y: i32, z: i32) -> i16 {
+        unsafe { ffi::Mat_GetShort3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_32S).
+    pub fn int_at(&self, row: i32, col: i32) -> i32 {
+        unsafe { ffi::Mat_GetInt(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_32S).
+    pub fn int_at3(&self, x: i32, y: i32, z: i32) -> i32 {
+        unsafe { ffi::Mat_GetInt3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_32F).
+    pub fn float_at(&self, row: i32, col: i32) -> f32 {
+        unsafe { ffi::Mat_GetFloat(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_32F).
+    pub fn float_at3(&self, x: i32, y: i32, z: i32) -> f32 {
+        unsafe { ffi::Mat_GetFloat3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_64F).
+    pub fn double_at(&self, row: i32, col: i32) -> f64 {
+        unsafe { ffi::Mat_GetDouble(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_64F).
+    pub fn double_at3(&self, x: i32, y: i32, z: i32) -> f64 {
+        unsafe { ffi::Mat_GetDouble3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_8U).
+    pub fn set_uchar_at(&mut self, row: i32, col: i32) {
+        unsafe { ffi::Mat_SetUChar(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_8U).
+    pub fn set_uchar_at3(&mut self, x: i32, y: i32, z: i32) {
+        unsafe { ffi::Mat_SetUChar3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_8S).
+    pub fn set_schar_at(&mut self, row: i32, col: i32) {
+        unsafe { ffi::Mat_SetSChar(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_8S).
+    pub fn set_schar_at3(&mut self, x: i32, y: i32, z: i32) {
+        unsafe { ffi::Mat_SetSChar3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_16S).
+    pub fn set_short_at(&mut self, row: i32, col: i32) {
+        unsafe { ffi::Mat_SetShort(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_16S).
+    pub fn set_short_at3(&mut self, x: i32, y: i32, z: i32) {
+        unsafe { ffi::Mat_SetShort3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_32S).
+    pub fn set_int_at(&mut self, row: i32, col: i32) {
+        unsafe { ffi::Mat_SetInt(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_32S).
+    pub fn set_int_at3(&mut self, x: i32, y: i32, z: i32) {
+        unsafe { ffi::Mat_SetInt3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_32F).
+    pub fn set_float_at(&mut self, row: i32, col: i32) {
+        unsafe { ffi::Mat_SetFloat(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_32F).
+    pub fn set_float_at3(&mut self, x: i32, y: i32, z: i32) {
+        unsafe { ffi::Mat_SetFloat3(self.inner, x, y, z) }
+    }
+
+    /// Returns a value from a specific row/col in this Mat (must be CV_64F).
+    pub fn set_double_at(&mut self, row: i32, col: i32) {
+        unsafe { ffi::Mat_SetDouble(self.inner, row, col) }
+    }
+
+    /// Returns a value from a specific x, y, z in this Mat (must be CV_64F).
+    pub fn set_double_at3(&mut self, x: i32, y: i32, z: i32) {
+        unsafe { ffi::Mat_SetDouble3(self.inner, x, y, z) }
+    }
+
+    /// Calculates the per-element absolute difference between two arrays or
+    /// between an array and a scalar.
+    fn abs_diff(&self, other: &Mat, dst: &mut Mat) {
+        unsafe { Mat_AbsDiff(self.inner, other.inner, dst.inner) }
     }
 }
 
