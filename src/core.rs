@@ -30,6 +30,7 @@ pub use opencv_sys::Scalar;
 pub use opencv_sys::Rect;
 pub use opencv_sys::Size;
 pub use opencv_sys::Point;
+pub use opencv_sys::KeyPoint;
 
 /// Here is the `CvType` in an easy-to-read table.
 ///

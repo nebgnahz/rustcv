@@ -17,7 +17,10 @@ pub struct Window {
     open: bool,
 }
 
-/// Flags for [highgui_named_window](fn.highgui_named_window.html). This only
+/// Flags for [Window::new](struct.Window.html#method.new). The flag can be
+/// updated via [Window::set_property](struct.Window.html#method.set_property)
+/// and retrieved via
+/// [Window::get_property](struct.Window.html#method.get_property). This only
 /// supports a subset of all cv::WindowFlags because C/C++ allows enum with the
 /// same value but Rust is stricter.
 #[repr(C)]
@@ -33,6 +36,26 @@ pub enum WindowFlag {
     FreeRatio = 0x00000100,
 }
 
+/// Flags for Window property.
+#[repr(C)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
+pub enum WindowProperty {
+    /// Fullscreen property
+    Fullscreen = 0,
+
+    /// Autosize.
+    Autosize = 1,
+
+    /// Window's aspect ration
+    AspectRatio = 2,
+
+    /// Opengl support.
+    OpenGl = 3,
+
+    /// Visibile or not.
+    Visible = 4,
+}
+
 impl Window {
     /// Creates a new named window.
     pub fn new(name: &str, flag: WindowFlag) -> Result<Self, Error> {
@@ -42,8 +65,13 @@ impl Window {
         }
         Ok(Window {
             name: s,
-            open: false,
+            open: true,
         })
+    }
+
+    /// Returns the window name.
+    pub fn name(&self) -> String {
+        self.name.to_string_lossy().into()
     }
 
     /// Checks if the Window is open.
@@ -63,5 +91,37 @@ impl Window {
     /// periodically for normal event processing
     pub fn wait_key(&self, delay: i32) -> i32 {
         unsafe { ffi::Window_WaitKey(delay) }
+    }
+
+    /// Returns properties of a window.
+    pub fn get_property(&self, flag: WindowProperty) -> f64 {
+        unsafe { ffi::Window_GetProperty(self.name.as_ptr(), flag as i32) }
+    }
+
+    /// Changes parameters of a window dynamically.
+    pub fn set_property(&mut self, flag: WindowProperty, value: WindowFlag) {
+        unsafe { ffi::Window_SetProperty(self.name.as_ptr(), flag as i32, (value as i32) as f64) }
+    }
+
+    /// Changes Window name dynamically.
+    pub fn set_title(&mut self, title: &str) -> Result<(), Error> {
+        unsafe { ffi::Window_SetTitle(self.name.as_ptr(), CString::new(title)?.as_ptr()) }
+        Ok(())
+    }
+
+    /// Moves window to the specified position.
+    pub fn move_window(&mut self, x: i32, y: i32) {
+        unsafe { ffi::Window_Move(self.name.as_ptr(), x, y) }
+    }
+
+    /// Resizes window to the specified size.
+    pub fn resize(&mut self, width: i32, height: i32) {
+        unsafe { ffi::Window_Resize(self.name.as_ptr(), width, height) }
+    }
+
+    /// Closes the window.
+    pub fn close(&mut self) {
+        self.open = false;
+        unsafe { ffi::Window_Close(self.name.as_ptr()) }
     }
 }

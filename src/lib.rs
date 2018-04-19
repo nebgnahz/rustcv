@@ -24,6 +24,7 @@ use std::ffi::CString;
 
 pub mod core;
 pub mod dnn;
+pub mod features2d;
 pub mod highgui;
 pub mod imgcodecs;
 pub mod imgproc;

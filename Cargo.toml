@@ -10,5 +10,33 @@ num-derive = "0.2"
 num-traits = "0.2"
 opencv-sys = { path = "opencv-sys" }
 
+[dev-dependencies]
+tempdir = "0.3"
+
 [workspace]
 members = ["opencv-sys"]
+
+[[test]]
+name = "test_core"
+path = "tests/test_core.rs"
+
+[[test]]
+name = "test_features2d"
+path = "tests/test_features2d.rs"
+
+[[test]]
+name = "test_highgui"
+path = "tests/test_highgui.rs"
+harness = false
+
+[[test]]
+name = "test_imgcodes"
+path = "tests/test_imgcodecs.rs"
+
+[[test]]
+name = "test_imgproc"
+path = "tests/test_imgproc.rs"
+
+[[test]]
+name = "test_objdetect"
+path = "tests/test_objdetect.rs"

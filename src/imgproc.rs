@@ -359,21 +359,21 @@ pub fn rectangle(img: &mut Mat, r: Rect, c: Scalar, thickness: i32) {
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub enum InterpolationFlag {
     /// nearest neighbor interpolation
-    InterNearst = 0,
+    Nearst = 0,
     /// bilinear interpolation
-    InterLinear = 1,
+    Linear = 1,
     /// bicubic interpolation
-    InterCubic = 2,
+    Cubic = 2,
     /// resampling using pixel area relation. It may be a preferred method for
     /// image decimation, as it gives moire'-free results. But when the image is
     /// zoomed, it is similar to the INTER_NEAREST method.
-    InterArea = 3,
+    Area = 3,
     /// Lanczos interpolation over 8x8 neighborhood
-    InterLanczos4 = 4,
+    Lanczos4 = 4,
     /// Bit exact bilinear interpolation
-    InterLinearExact = 5,
+    LinearExact = 5,
     /// mask for interpolation codes
-    InterMax = 7,
+    Max = 7,
     /// flag, fills all of the destination image pixels. If some of them
     /// correspond to outliers in the source image, they are set to zero
     WarpFillOutliers = 8,
