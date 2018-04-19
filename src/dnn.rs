@@ -2,7 +2,8 @@
 
 use opencv_sys as ffi;
 use core::{Mat, Scalar, Size};
-use str_to_cstring;
+use std::ffi::CString;
+use Error;
 
 /// Cascade classifier class for object detection.
 #[derive(Debug)]
@@ -12,19 +13,21 @@ pub struct Net {
 
 impl Net {
     /// Reads a network model stored in Caffe framework's format.
-    pub fn from_caffe(prototxt: &str, model: &str) -> Self {
-        Net {
-            inner: unsafe {
-                ffi::Net_ReadNetFromCaffe(str_to_cstring(prototxt), str_to_cstring(model))
-            },
-        }
+    pub fn from_caffe(prototxt: &str, model: &str) -> Result<Self, Error> {
+        let prototxt = CString::new(prototxt)?;
+        let model = CString::new(model)?;
+
+        Ok(Net {
+            inner: unsafe { ffi::Net_ReadNetFromCaffe(prototxt.as_ptr(), model.as_ptr()) },
+        })
     }
 
     /// Reads a network model stored in Caffe framework's format.
-    pub fn from_tensorflow(model: &str) -> Self {
-        Net {
-            inner: unsafe { ffi::Net_ReadNetFromTensorflow(str_to_cstring(model)) },
-        }
+    pub fn from_tensorflow(model: &str) -> Result<Self, Error> {
+        let model = CString::new(model)?;
+        Ok(Net {
+            inner: unsafe { ffi::Net_ReadNetFromTensorflow(model.as_ptr()) },
+        })
     }
 
     /// Returns true if there are no layers in the network.
@@ -33,13 +36,18 @@ impl Net {
     }
 
     /// Sets the new value for the layer output blob.
-    pub fn set_input(&mut self, blob: &Mat, name: &str) {
-        unsafe { ffi::Net_SetInput(self.inner, blob.inner, str_to_cstring(name)) }
+    pub fn set_input(&mut self, blob: &Mat, name: &str) -> Result<(), Error> {
+        let name = CString::new(name)?;
+        unsafe { ffi::Net_SetInput(self.inner, blob.inner, name.as_ptr()) };
+        Ok(())
     }
 
     /// Runs forward pass to compute output of layer with name outputName.
-    pub fn forward(&self, output_name: &str) -> Mat {
-        Mat::from(unsafe { ffi::Net_Forward(self.inner, str_to_cstring(output_name)) })
+    pub fn forward(&self, output_name: &str) -> Result<Mat, Error> {
+        let output_name = CString::new(output_name)?;
+        Ok(Mat::from(unsafe {
+            ffi::Net_Forward(self.inner, output_name.as_ptr())
+        }))
     }
 }
 

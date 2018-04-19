@@ -41,6 +41,20 @@ if [[ ! -e $INSTALL_FLAG ]]; then
         ..
     make install && mkdir -p "$(dirname "$INSTALL_FLAG")" && touch "$INSTALL_FLAG";
     popd
+
+    if [[ ! -f "${HOME}/testdata/bvlc_googlenet.prototxt" ]]; then
+        cp opencv-${OPENCV_VERSION}/samples/data/dnn/bvlc_googlenet.prototxt ${HOME}/testdata/bvlc_googlenet.prototxt
+    fi
+
+    if [[ ! -f "${HOME}/testdata/bvlc_googlenet.caffemodel" ]]; then
+        curl -sL http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel > ${HOME}/testdata/bvlc_googlenet.caffemodel
+    fi
+
+    if [[ ! -f "${HOME}/testdata/tensorflow_inception_graph.pb" ]]; then
+        curl -sL https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip > ${HOME}/testdata/inception5h.zip
+        unzip -o ${HOME}/testdata/inception5h.zip tensorflow_inception_graph.pb -d ${HOME}/testdata
+    fi
+
     touch $HOME/fresh-cache
 fi
 

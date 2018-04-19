@@ -67,8 +67,3 @@ fn path_to_cstring<P: AsRef<Path>>(path: P) -> Result<CString, Error> {
     let result = CString::new(x)?;
     Ok(result)
 }
-
-fn str_to_cstring(s: &str) -> *const i8 {
-    let cstr = CString::new(s).expect("Invalid String");
-    cstr.as_ptr()
-}

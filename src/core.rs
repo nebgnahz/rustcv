@@ -12,6 +12,20 @@ pub struct Mat {
     pub(crate) inner: ffi::Mat,
 }
 
+impl Clone for Mat {
+    fn clone(&self) -> Self {
+        Mat {
+            inner: unsafe { ffi::Mat_Clone(self.inner) },
+        }
+    }
+}
+
+impl Drop for Mat {
+    fn drop(&mut self) {
+        unsafe { ffi::Mat_Close(self.inner) }
+    }
+}
+
 pub use opencv_sys::Scalar;
 pub use opencv_sys::Rect;
 pub use opencv_sys::Size;
@@ -543,12 +557,14 @@ pub fn copy_make_border(
     }
 }
 
-impl Clone for Mat {
-    fn clone(&self) -> Self {
-        Mat {
-            inner: unsafe { ffi::Mat_Clone(self.inner) },
-        }
-    }
+/// Finds the global minimum and maximum in an array.
+pub fn min_max_loc(input: &Mat) -> (f64, f64, Point, Point) {
+    let mut min = 0.0;
+    let mut max = 0.0;
+    let mut min_loc = Point { x: 0, y: 0 };
+    let mut max_loc = Point { x: 0, y: 0 };
+    unsafe { ffi::Mat_MinMaxLoc(input.inner, &mut min, &mut max, &mut min_loc, &mut max_loc) }
+    (min, max, min_loc, max_loc)
 }
 
 fn to_byte_array(buf: &mut [i8]) -> ffi::ByteArray {
@@ -565,11 +581,5 @@ fn from_byte_array(arr: &ffi::ByteArray) -> Vec<u8> {
             arr.length as usize,
             arr.length as usize,
         )
-    }
-}
-
-impl Drop for Mat {
-    fn drop(&mut self) {
-        unsafe { ffi::Mat_Close(self.inner) }
     }
 }
