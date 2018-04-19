@@ -23,10 +23,10 @@ fn opencv_link() {
     }
 }
 
-fn source(module: &str) -> PathBuf {
-    let mut path = PathBuf::from("gocv");
-    path.push(module);
-    path.set_extension("cpp");
+fn source(module: &str) -> String {
+    let mut path = String::from("gocv/");
+    path += module;
+    path += ".cpp";
     path
 }
 
@@ -57,11 +57,17 @@ fn main() {
         "videoio",
     ];
 
+    let mut sources: Vec<String> = modules.iter().map(|m| source(m)).collect();
+
+    if cfg!(feature = "cuda") {
+        sources.push("cuda.cpp".to_string());
+    }
+
     cc::Build::new()
         .flag("-std=c++11")
         .warnings(false)
         .cpp(true)
-        .files(modules.iter().map(|m| source(m)))
+        .files(sources)
         .compile("cv");
 
     opencv_link();

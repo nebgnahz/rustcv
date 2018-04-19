@@ -8,3 +8,6 @@ authors = ["Ben Zhang <benzh@cs.berkeley.edu>"]
 [build-dependencies]
 cc = "1.0"
 bindgen = "0.36"
+
+[features]
+cuda = []
