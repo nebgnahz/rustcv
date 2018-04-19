@@ -23,6 +23,7 @@ use std::path::{Path, PathBuf};
 use std::ffi::CString;
 
 pub mod core;
+pub mod dnn;
 pub mod highgui;
 pub mod imgcodecs;
 pub mod objdetect;
@@ -30,6 +31,10 @@ pub mod objdetect;
 #[derive(Debug, Fail)]
 /// Custom errors.
 pub enum CvError {
+    #[fail(display = "invalid string: {:?}", _0)]
+    /// Indicates that string was invalid
+    InvalidString(String),
+
     #[fail(display = "invalid path: {:?}", _0)]
     /// Indicates that path was invalid
     InvalidPath(PathBuf),
@@ -60,4 +65,9 @@ fn path_to_cstring<P: AsRef<Path>>(path: P) -> Result<CString, Error> {
     let x = path.to_str().ok_or(CvError::InvalidPath(path.into()))?;
     let result = CString::new(x)?;
     Ok(result)
+}
+
+fn str_to_cstring(s: &str) -> *const i8 {
+    let cstr = CString::new(s).expect("Invalid String");
+    cstr.as_ptr()
 }
