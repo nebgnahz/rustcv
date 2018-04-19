@@ -11,26 +11,32 @@ rust:
 addons:
   apt:
     packages:
-    - build-essential
-    - cmake
-    - git
-    - libavcodec-dev
-    - libavformat-dev
-    - libdc1394-22-dev
-    - libgmp-dev
-    - libgtk2.0-dev
-    - libjasper-dev
-    - libjpeg-dev
-    - libleptonica-dev
-    - libpng-dev
-    - libswscale-dev
-    - libtbb-dev
-    - libtbb2
-    - libtesseract-dev
-    - libtiff-dev
-    - pkg-config
-    - tesseract-ocr
-    - xvfb
+      - binutils-dev
+      - build-essential
+      - cmake
+      - gcc
+      - git
+      - libavcodec-dev
+      - libavformat-dev
+      - libcurl4-openssl-dev
+      - libdc1394-22-dev
+      - libdw-dev
+      - libelf-dev
+      - libgmp-dev
+      - libgtk2.0-dev
+      - libiberty-dev
+      - libjasper-dev
+      - libjpeg-dev
+      - libleptonica-dev
+      - libpng-dev
+      - libswscale-dev
+      - libtbb-dev
+      - libtbb2
+      - libtesseract-dev
+      - libtiff-dev
+      - pkg-config
+      - tesseract-ocr
+      - xvfb
 
 before_install:
   - export PATH="$PATH:$HOME/.cargo/bin"
@@ -64,3 +70,18 @@ deploy:
   local_dir: target/doc/
   on:
     branch: master
+
+after_success: |
+  wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz &&
+  tar xzf master.tar.gz &&
+  cd kcov-master &&
+  mkdir build &&
+  cd build &&
+  cmake .. &&
+  make &&
+  make install DESTDIR=../../kcov-build &&
+  cd ../.. &&
+  rm -rf kcov-master &&
+  for file in target/debug/test_*[^\.d]; do mkdir -p "target/cov/$(basename $file)"; ./kcov-build/usr/local/bin/kcov --exclude-pattern=/.cargo,/usr/lib --verify "target/cov/$(basename $file)" "$file"; done &&
+  bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
+  echo "Uploaded code coverage"
