@@ -268,7 +268,8 @@ pub fn median_blur(src: &Mat, dst: &mut Mat, size: i32) {
 /// in the input image image and marks them in the output map edges using the
 /// Canny algorithm. The smallest value between threshold1 and threshold2 is
 /// used for edge linking. The largest value is used to find initial segments of
-/// strong edges. See http://en.wikipedia.org/wiki/Canny_edge_detector
+/// strong edges. See
+/// [wikipedia](http://en.wikipedia.org/wiki/Canny_edge_detector).
 pub fn canny(src: &Mat, edges: &mut Mat, t1: f64, t2: f64) {
     unsafe { ffi::Canny(src.inner, edges.inner, t1, t2) }
 }
