@@ -41,7 +41,7 @@ addons:
 before_install:
   - export PATH="$PATH:$HOME/.cargo/bin"
   - export RUSTCV_CAFFE_TEST_FILES=$HOME/testdata
-  # - sudo -E ./.ci/install_cuda.sh
+  - sudo -E ./.ci/install_cuda.sh
   - sudo -E ./.ci/travis_build_opencv.sh
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu
   - cargo install cargo-travis || echo "cargo-travis already installed"
