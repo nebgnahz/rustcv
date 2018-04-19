@@ -44,14 +44,18 @@ before_install:
   - sudo -E ./.ci/install_cuda.sh
   - sudo -E ./.ci/travis_build_opencv.sh
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu
+  - cargo install cargo-travis || echo "cargo-travis already installed"
   - rustup component add rustfmt-preview
 
 script:
   - cargo build
+  - cargo fmt -- --write-mode=diff
   - cargo test
   - cargo doc -p opencv-sys --no-deps
   - cargo doc -p rustcv --no-deps
-  - cargo fmt -- --write-mode=diff
+  - |
+    cargo coverage --verbose &&
+    bash <(curl -s https://codecov.io/bash) -s target/kcov -t $CODECOV_TOKEN
 
 notifications:
   email:
@@ -73,18 +77,3 @@ deploy:
   local_dir: target/doc/
   on:
     branch: master
-
-after_success: |
-  wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz &&
-  tar xzf master.tar.gz &&
-  cd kcov-master &&
-  mkdir build &&
-  cd build &&
-  cmake .. &&
-  make &&
-  make install DESTDIR=../../kcov-build &&
-  cd ../.. &&
-  rm -rf kcov-master &&
-  for file in target/debug/test_*[^\.d]; do mkdir -p "target/cov/$(basename $file)"; ./kcov-build/usr/local/bin/kcov --exclude-pattern=/.cargo,/usr/lib --verify "target/cov/$(basename $file)" "$file"; done &&
-  bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
-  echo "Uploaded code coverage"
