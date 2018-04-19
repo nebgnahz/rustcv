@@ -23,8 +23,9 @@ use std::path::{Path, PathBuf};
 use std::ffi::CString;
 
 pub mod core;
-pub mod imgcodecs;
 pub mod highgui;
+pub mod imgcodecs;
+pub mod objdetect;
 
 #[derive(Debug, Fail)]
 /// Custom errors.
@@ -32,6 +33,11 @@ pub enum CvError {
     #[fail(display = "invalid path: {:?}", _0)]
     /// Indicates that path was invalid
     InvalidPath(PathBuf),
+
+    #[fail(display = "error loading cascade: {:?}", _0)]
+    /// Indicates that cascade model was invalid
+    InvalidCascadeModel(PathBuf),
+
     #[fail(display = "EntryNotFound: {:?}", _0)]
     /// Indicates that there is no entry on specified path
     EntryNotFound(PathBuf),

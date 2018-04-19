@@ -14,6 +14,7 @@ pub struct Mat {
 
 pub use opencv_sys::Scalar;
 pub use opencv_sys::Rect;
+pub use opencv_sys::Size;
 
 /// Here is the `CvType` in an easy-to-read table.
 ///
