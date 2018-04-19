@@ -26,6 +26,7 @@ pub mod core;
 pub mod dnn;
 pub mod highgui;
 pub mod imgcodecs;
+pub mod imgproc;
 pub mod objdetect;
 
 #[derive(Debug, Fail)]
