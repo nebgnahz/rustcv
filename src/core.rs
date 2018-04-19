@@ -353,8 +353,8 @@ pub fn add(this: &Mat, other: &Mat, dst: &mut Mat) {
     unsafe { ffi::Mat_AbsDiff(this.inner, other.inner, dst.inner) }
 }
 
-/// Calculates the weighted sum of two arrays.
-/// dst = src1*alpha + src2*beta + gamma;
+/// Calculates the weighted sum of two arrays (dst = src1\*alpha + src2\*beta +
+/// gamma).
 pub fn add_weighted(src1: &Mat, alpha: f64, src2: &Mat, beta: f64, gamma: f64, dst: &mut Mat) {
     unsafe { ffi::Mat_AddWeighted(src1.inner, alpha, src2.inner, beta, gamma, dst.inner) }
 }
@@ -468,6 +468,77 @@ pub fn calc_covar_matrix(
 /// Calculates the magnitude and angle of 2D vectors.
 pub fn cart_to_polar(x: &Mat, y: &Mat, magnitude: &mut Mat, angle: &mut Mat, use_degree: bool) {
     unsafe { ffi::Mat_CartToPolar(x.inner, y.inner, magnitude.inner, angle.inner, use_degree) }
+}
+
+/// Comparison type.
+#[repr(C)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash, FromPrimitive, ToPrimitive)]
+pub enum CompareType {
+    /// src1 is equal to src2.
+    Eq = 0,
+    /// src1 is greater to src2.
+    Gt = 1,
+    /// src1 is greater than or equal to src2.
+    Ge = 2,
+    /// src1 is less than to src2.
+    Lt = 3,
+    /// src1 is less than or equal to src2.
+    Le = 4,
+    /// src1 is not equal to src2.
+    Ne = 5,
+}
+
+/// Performs the per-element comparison of two arrays or an array and scalar
+/// value.
+pub fn compare(src1: &Mat, src2: &Mat, dst: &mut Mat, ct: CompareType) {
+    unsafe { ffi::Mat_Compare(src1.inner, src2.inner, dst.inner, ct as i32) }
+}
+
+/// Counts non-zero array elements.
+pub fn count_non_zero(src: &Mat) -> i32 {
+    unsafe { ffi::Mat_CountNonZero(src.inner) }
+}
+
+/// Copies the lower or the upper half of a square matrix to its another half.
+pub fn complete_symm(m: &mut Mat, lower_to_upper: bool) {
+    unsafe { ffi::Mat_CompleteSymm(m.inner, lower_to_upper) }
+}
+
+/// Scales, calculates absolute values, and converts the result to 8-bit.
+pub fn convert_scale_abs(src: &Mat, dst: &mut Mat, alpha: f64, beta: f64) {
+    unsafe { ffi::Mat_ConvertScaleAbs(src.inner, dst.inner, alpha, beta) }
+}
+
+/// Forms a border around an image.
+///
+/// The function copies the source image into the middle of the destination
+/// image. The areas to the left, to the right, above and below the copied
+/// source image will be filled with extrapolated pixels. This is not what
+/// filtering functions based on it do (they extrapolate pixels on-fly), but
+/// what other more complex functions, including your own, may do to simplify
+/// image boundary handling.
+pub fn copy_make_border(
+    src: &Mat,
+    dst: &mut Mat,
+    top: i32,
+    bottom: i32,
+    left: i32,
+    right: i32,
+    type_: BorderType,
+    value: Scalar,
+) {
+    unsafe {
+        ffi::Mat_CopyMakeBorder(
+            src.inner,
+            dst.inner,
+            top,
+            bottom,
+            left,
+            right,
+            type_ as i32,
+            value,
+        )
+    }
 }
 
 impl Clone for Mat {
