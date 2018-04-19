@@ -1,5 +1,5 @@
-extern crate tempdir;
 extern crate rustcv;
+extern crate tempdir;
 use rustcv::imgcodecs::*;
 use std::path::PathBuf;
 

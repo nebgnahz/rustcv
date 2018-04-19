@@ -17,7 +17,10 @@ fn test_resize() {
     assert!(!src.empty());
     let mut dst = Mat::new();
 
-    let target_size = Size { width: 0, height: 0 };
+    let target_size = Size {
+        width: 0,
+        height: 0,
+    };
     resize(
         &src,
         &mut dst,
@@ -29,7 +32,10 @@ fn test_resize() {
     assert_eq!(dst.cols(), 256);
     assert_eq!(dst.rows(), 256);
 
-    let target_size = Size { width: 440, height: 377 };
+    let target_size = Size {
+        width: 440,
+        height: 377,
+    };
     resize(
         &src,
         &mut dst,
