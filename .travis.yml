@@ -52,6 +52,7 @@ before_install:
 
 script:
   - cargo build
+  - cargo build --features cuda
   - cargo fmt -- --write-mode=diff
   - cargo test
   - cargo doc -p opencv-sys --no-deps

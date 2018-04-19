@@ -41,7 +41,7 @@ void HOG_SetSVMDetector(HOG h, Mat detector) {
     (*h)->setSVMDetector(*detector);
 }
 
-Rects FromVecRect(std::vector<cv:Rect> vec_rect) {
+Rects FromVecRect(std::vector<cv::Rect> vec_rect) {
     Rect* rects = new Rect[vec_rect.size()];
     for (size_t i = 0; i < vec_rect.size(); ++i) {
         Rect r = {vec_rect[i].x, vec_rect[i].y, vec_rect[i].width, vec_rect[i].height};
@@ -58,13 +58,13 @@ VecDouble FromVecDouble(std::vector<double> vec_double) {
         ds[i] = vec_double[i];
     }
 
-    Rects ret = {ds, (int) vec_double.size()};
+    VecDouble ret = {ds, (int) vec_double.size()};
     return ret;
 }
 
 Rects HOG_DetectMultiScale(HOG h, GpuMat image) {
     std::vector<cv::Rect> detected;
-    (*h)->detectMultiScale(*img, detected);
+    (*h)->detectMultiScale(*image, detected);
     return FromVecRect(detected);
 }
 
@@ -72,9 +72,9 @@ Rects HOG_DetectMultiScale_WithConf(HOG h, GpuMat image, VecDouble* confidence) 
     (*h)->setGroupThreshold(0);
     std::vector<cv::Rect> vec_rects;
     std::vector<double> vec_confidences;
-    (*hog)->setGroupThreshold(0);
-    (*hog)->detectMultiScale(*image, vec_rects, vec_confidences);
-    confidence = FromVecDouble(vec_confidences);
+    (*h)->setGroupThreshold(0);
+    (*h)->detectMultiScale(*image, vec_rects, &vec_confidences);
+    *confidence = FromVecDouble(vec_confidences);
     return FromVecRect(vec_rects);
 }
 
@@ -90,8 +90,8 @@ void Hog_SetHitThreshold(HOG h, double hit_threshold) {
     (*h)->setHitThreshold(hit_threshold);
 }
 
-void HOG_SetL2hysThreshold(HOG h, double l2hys_threshold) {
-    (*h)->setL2hysThreshold(l2hys_threshold);
+void HOG_SetL2HysThreshold(HOG h, double l2hys_threshold) {
+    (*h)->setL2HysThreshold(l2hys_threshold);
 }
 
 void HOG_SetNumLevels(HOG h, int num_levels) {
@@ -107,7 +107,8 @@ void HOG_SetWinSigma(HOG h, double win_sigma) {
 }
 
 void HOG_SetWinStride(HOG h, Size win_stride) {
-    (*h)->setWinStride(win_stride);
+    cv::Size cv_win_stride(win_stride.width, win_stride.height);
+    (*h)->setWinStride(cv_win_stride);
 }
 
 bool HOG_GetGammaCorrection(HOG h) {
@@ -122,8 +123,8 @@ double HOG_GetHitThreshold(HOG h) {
     return (*h)->getHitThreshold();
 }
 
-double HOG_GetL2hysThreshold(HOG h) {
-    return (*h)->getL2hysThreshold();
+double HOG_GetL2HysThreshold(HOG h) {
+    return (*h)->getL2HysThreshold();
 }
 
 int HOG_GetNumLevels(HOG h) {
@@ -139,7 +140,8 @@ double HOG_GetWinSigma(HOG h) {
 }
 
 Size HOG_GetWinStride(HOG h) {
-    return (*h)->getWinStride();
+    auto size = (*h)->getWinStride();
+    return Size { size.width, size.height };
 }
 
 GpuCascade GpuCascade_Create(const char* const filename) {
@@ -156,7 +158,7 @@ Rects GpuCascade_DetectMultiScale(GpuCascade cascade, GpuMat mat) {
     cv::cuda::GpuMat objbuf;
     std::vector<cv::Rect> vec_object;
 
-    (*cascade)->detectMultiScale(*image, objbuf);
+    (*cascade)->detectMultiScale(*mat, objbuf);
     (*cascade)->convert(objbuf, vec_object);
 
     return FromVecRect(vec_object);
@@ -176,12 +178,12 @@ void GpuCascade_SetMinNeighbors(GpuCascade cascade, int min_neighbors) {
 
 void GpuCascade_SetMaxObjectSize(GpuCascade cascade, Size max_size) {
     cv::Size cv_max_size(max_size.width, max_size.height);
-    (*cascade)->setMaxObjectSize(max_size);
+    (*cascade)->setMaxObjectSize(cv_max_size);
 }
 
 void GpuCascade_SetMinObjectSize(GpuCascade cascade, Size min_size) {
     cv::Size cv_min_size(min_size.width, min_size.height);
-    (*cascade)->setMinObjectSize(max_size);
+    (*cascade)->setMinObjectSize(cv_min_size);
 }
 
 void GpuCascade_SetScaleFactor(GpuCascade cascade, double scale) {
@@ -217,7 +219,3 @@ Size GpuCascade_GetMinObjectSize(GpuCascade cascade) {
 double GpuCascade_GetScaleFactor(GpuCascade cascade) {
     return (*cascade)->getScaleFactor();
 }
-
-#ifdef __cplusplus
-}
-#endif

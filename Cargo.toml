@@ -8,10 +8,16 @@ bitflags = "1.0"
 failure = "0.1"
 num-derive = "0.2"
 num-traits = "0.2"
-opencv-sys = { path = "opencv-sys" }
+
+[dependencies.opencv-sys]
+path = "opencv-sys"
+default-features = false
 
 [dev-dependencies]
 tempdir = "0.3"
+
+[features]
+cuda = ["opencv-sys/cuda"]
 
 [workspace]
 members = ["opencv-sys"]
