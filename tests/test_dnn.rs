@@ -3,23 +3,28 @@ use rustcv::core::*;
 use rustcv::imgcodecs::*;
 use rustcv::dnn::*;
 use std::path::PathBuf;
+use std::env;
 
-pub fn asset_path(f: &str) -> PathBuf {
+fn asset_path(f: &str) -> PathBuf {
     let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     d.push("assets");
     d.push(f);
     d
 }
 
-#[test]
-fn test_caffe() {
-    let proto = concat!(env!("RUSTCV_CAFFE_TEST_FILES"), "/bvlc_googlenet.prototxt");
-    let model = concat!(
-        env!("RUSTCV_CAFFE_TEST_FILES"),
-        "/bvlc_googlenet.caffemodel"
-    );
+fn caffe_path(f: &str) -> String {
+    let mut path = env::var("RUSTCV_CAFFE_TEST_FILES").unwrap();
+    path += f;
+    path
+}
 
-    let mut net = Net::from_caffe(proto, model).unwrap();
+#[test]
+#[ignore]
+fn test_caffe() {
+    let proto = caffe_path("bvlc_googlenet.prototxt");
+    let model = caffe_path("bvlc_googlenet.caffemodel");
+
+    let mut net = Net::from_caffe(&proto, &model).unwrap();
     let image = imread(asset_path("space_shuttle.jpg"), ImageReadMode::Color)
         .expect("failed to load space.png");
     let blob = blob_from_image(

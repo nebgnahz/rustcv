@@ -197,18 +197,36 @@ pub fn pyr_up(src: &Mat, dst: &mut Mat, size: Size, border: BorderType) {
     unsafe { ffi::PyrUp(src.inner, dst.inner, size, border as i32) }
 }
 
-/// GaussianBlur blurs an image Mat using a Gaussian filter. The function
-/// convolves the src Mat image into the dst Mat using the specified Gaussian
-/// kernel params.
+/// GaussianBlur blurs an image Mat using a Gaussian filter.
+///
+/// The function convolves the `src` Mat image into the `dst` Mat using the
+/// specified Gaussian kernel params.
+///
+/// * `src`: input image; the image can have any number of channels, which are
+/// processed independently, but the depth should be `CV_8U`, `CV_16U`, `CV_16S`,
+/// `CV_32F` or `CV_64F`.
+/// * `dst`: output image of the same size and type as `src`.
+/// * `ksize`: Gaussian kernel size. ksize.width and ksize.height can differ but
+/// they both must be positive and odd. Or, they can be zero's and then they are
+/// computed from sigma.
+/// * `sigmaX`: Gaussian kernel standard deviation in X direction.
+/// * `sigmaY`: Gaussian kernel standard deviation in Y direction. if sigmaY is
+/// zero, it is set to be equal to sigmaX, if both sigmas are zeros, they are
+/// computed from ksize.width and ksize.height, respectively (see
+/// cv::getGaussianKernel for details). To fully control the result regardless
+/// of possible future modifications of all this semantics, it is recommended to
+/// specify all of ksize, sigmaX, and sigmaY.
+/// * `borderType`: pixel extrapolation method, see
+/// [BorderType](../core/enum.BorderType.html).
 pub fn gaussian_blur(
     src: &Mat,
     dst: &mut Mat,
-    size: Size,
+    ksize: Size,
     sigma_x: f64,
     sigma_y: f64,
     border: BorderType,
 ) {
-    unsafe { ffi::GaussianBlur(src.inner, dst.inner, size, sigma_x, sigma_y, border as i32) }
+    unsafe { ffi::GaussianBlur(src.inner, dst.inner, ksize, sigma_x, sigma_y, border as i32) }
 }
 
 /// Calculates the Laplacian of an image.
@@ -264,14 +282,21 @@ pub fn median_blur(src: &Mat, dst: &mut Mat, size: i32) {
     unsafe { ffi::MedianBlur(src.inner, dst.inner, size) }
 }
 
-/// Finds edges in an image using the Canny algorithm. The function finds edges
-/// in the input image image and marks them in the output map edges using the
-/// Canny algorithm. The smallest value between threshold1 and threshold2 is
-/// used for edge linking. The largest value is used to find initial segments of
-/// strong edges. See
+/// Finds edges in an image using the Canny algorithm.
+///
+/// The function finds edges in the input image image and marks them in the
+/// output map edges using the Canny algorithm. The smallest value between
+/// threshold1 and threshold2 is used for edge linking. The largest value is
+/// used to find initial segments of strong edges. See
 /// [wikipedia](http://en.wikipedia.org/wiki/Canny_edge_detector).
-pub fn canny(src: &Mat, edges: &mut Mat, t1: f64, t2: f64) {
-    unsafe { ffi::Canny(src.inner, edges.inner, t1, t2) }
+///
+/// * `image`: 8-bit input image.
+/// * `edges`: output edge map; single channels 8-bit image, which has the same
+/// size as image .
+/// * `threshold1`: first threshold for the hysteresis procedure.
+/// * `threshold2`: second threshold for the hysteresis procedure.
+pub fn canny(src: &Mat, edges: &mut Mat, threshold1: f64, threshold2: f64) {
+    unsafe { ffi::Canny(src.inner, edges.inner, threshold1, threshold2) }
 }
 
 /// Determines strong corners on an image. The function finds the most prominent
