@@ -21,7 +21,10 @@ typedef void* GpuMat;
 GpuMat GpuMat_New();
 void GpuMat_Close(GpuMat m);
 void GpuMat_Upload(GpuMat gm, Mat m);
-Mat GpuMat_ConvertTo(GpuMat gm);
+Mat GpuMat_ConvertTo(GpuMat m);
+int GpuMat_Rows(GpuMat m);
+int GpuMat_Cols(GpuMat m);
+int GpuMat_Empty(GpuMat m);
 
 // =============================================================================
 //   HOG

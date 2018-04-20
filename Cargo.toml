@@ -27,6 +27,10 @@ name = "test_core"
 path = "tests/test_core.rs"
 
 [[test]]
+name = "test_cuda"
+path = "tests/test_cuda.rs"
+
+[[test]]
 name = "test_dnn"
 path = "tests/test_dnn.rs"
 

@@ -30,6 +30,9 @@ pub mod imgcodecs;
 pub mod imgproc;
 pub mod objdetect;
 
+#[cfg(feature = "cuda")]
+pub mod cuda;
+
 #[derive(Debug, Fail)]
 /// Custom errors.
 pub enum CvError {

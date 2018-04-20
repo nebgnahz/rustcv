@@ -55,8 +55,9 @@ script:
   - cargo build --features cuda
   - cargo fmt -- --write-mode=diff
   - cargo test
-  - cargo doc -p opencv-sys --no-deps
-  - cargo doc -p rustcv --no-deps
+  - cargo test --features cuda
+  - cargo doc -p opencv-sys --features cuda --no-deps
+  - cargo doc -p rustcv --features cuda --no-deps
   - |
     cargo coverage --verbose &&
     bash <(curl -s https://codecov.io/bash) -s target/kcov -t $CODECOV_TOKEN

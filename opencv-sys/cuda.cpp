@@ -9,6 +9,10 @@ void GpuMat_Close(GpuMat m) {
     m = nullptr;
 }
 
+int GpuMat_Rows(GpuMat m) { return (*m).rows; }
+int GpuMat_Cols(GpuMat m) { return (*m).cols; }
+int GpuMat_Empty(GpuMat m) { return (*m).empty(); }
+
 void GpuMat_Upload(GpuMat gm, Mat m) {
     gm->upload(*m);
 }
@@ -145,8 +149,9 @@ Size HOG_GetWinStride(HOG h) {
 }
 
 GpuCascade GpuCascade_Create(const char* const filename) {
-    auto cascade = cv::cuda::CascadeClassifier::create(filename);
-    return new cv::Ptr<cv::cuda::CascadeClassifier>(cascade);
+  GpuCascade p = new cv::Ptr<cv::cuda::CascadeClassifier>(
+      cv::cuda::CascadeClassifier::create(filename));
+  return p;
 }
 
 void GpuCascade_Close(GpuCascade cascade) {
