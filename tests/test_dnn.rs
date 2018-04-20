@@ -14,6 +14,7 @@ fn asset_path(f: &str) -> PathBuf {
 
 fn caffe_path(f: &str) -> String {
     let mut path = env::var("RUSTCV_CAFFE_TEST_FILES").unwrap();
+    path += "/";
     path += f;
     path
 }
