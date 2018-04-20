@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `gaussian_blur` fn in crate `rustcv`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, gaussian_blur">
+
+    <title>rustcv::imgproc::gaussian_blur - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
+    
+
+    
+    
+</head>
+<body class="rustdoc fn">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
+        
+        <p class='location'><a href='../index.html'>rustcv</a>::<wbr><a href='index.html'>imgproc</a></p><script>window.sidebarCurrent = {name: 'gaussian_blur', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>rustcv</a>::<wbr><a href='index.html'>imgproc</a>::<wbr><a class="fn" href=''>gaussian_blur</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/rustcv/imgproc.rs.html#221-230' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn gaussian_blur(<br>&nbsp;&nbsp;&nbsp;&nbsp;src: &amp;<a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;dst: &amp;mut <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;ksize: <a class="struct" href="../../rustcv/core/struct.Size.html" title="struct rustcv::core::Size">Size</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;sigma_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;sigma_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;border: <a class="enum" href="../../rustcv/core/enum.BorderType.html" title="enum rustcv::core::BorderType">BorderType</a><br>)</pre><div class='docblock'><p>GaussianBlur blurs an image Mat using a Gaussian filter.</p>
+<p>The function convolves the <code>src</code> Mat image into the <code>dst</code> Mat using the
+specified Gaussian kernel params.</p>
+<ul>
+<li><code>src</code>: input image; the image can have any number of channels, which are
+processed independently, but the depth should be <code>CV_8U</code>, <code>CV_16U</code>, <code>CV_16S</code>,
+<code>CV_32F</code> or <code>CV_64F</code>.</li>
+<li><code>dst</code>: output image of the same size and type as <code>src</code>.</li>
+<li><code>ksize</code>: Gaussian kernel size. ksize.width and ksize.height can differ but
+they both must be positive and odd. Or, they can be zero's and then they are
+computed from sigma.</li>
+<li><code>sigmaX</code>: Gaussian kernel standard deviation in X direction.</li>
+<li><code>sigmaY</code>: Gaussian kernel standard deviation in Y direction. if sigmaY is
+zero, it is set to be equal to sigmaX, if both sigmas are zeros, they are
+computed from ksize.width and ksize.height, respectively (see
+cv::getGaussianKernel for details). To fully control the result regardless
+of possible future modifications of all this semantics, it is recommended to
+specify all of ksize, sigmaX, and sigmaY.</li>
+<li><code>borderType</code>: pixel extrapolation method, see
+<a href="../core/enum.BorderType.html">BorderType</a>.</li>
+</ul>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt><kbd>?</kbd></dt>
+                    <dd>Show this help dialog</dd>
+                    <dt><kbd>S</kbd></dt>
+                    <dd>Focus the search field</dd>
+                    <dt><kbd>↑</kbd></dt>
+                    <dd>Move up in search results</dd>
+                    <dt><kbd>↓</kbd></dt>
+                    <dd>Move down in search results</dd>
+                    <dt><kbd>↹</kbd></dt>
+                    <dd>Switch tab</dd>
+                    <dt><kbd>&#9166;</kbd></dt>
+                    <dd>Go to active search result</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "rustcv";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

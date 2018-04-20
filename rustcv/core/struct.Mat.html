@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Mat` struct in crate `rustcv`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Mat">
+
+    <title>rustcv::core::Mat - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
+        
+        <p class='location'>Struct Mat</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.new_with_size">new_with_size</a><a href="#method.new_from_scalar">new_from_scalar</a><a href="#method.new_from_bytes">new_from_bytes</a><a href="#method.empty">empty</a><a href="#method.copy_to">copy_to</a><a href="#method.copy_to_with_mask">copy_to_with_mask</a><a href="#method.convert_to">convert_to</a><a href="#method.to_bytes">to_bytes</a><a href="#method.region">region</a><a href="#method.reshape">reshape</a><a href="#method.convert_fp16">convert_fp16</a><a href="#method.mean">mean</a><a href="#method.sum">sum</a><a href="#method.lookup_table_transform">lookup_table_transform</a><a href="#method.rows">rows</a><a href="#method.cols">cols</a><a href="#method.channels">channels</a><a href="#method.cv_type">cv_type</a><a href="#method.cv_step">cv_step</a><a href="#method.uchar_at">uchar_at</a><a href="#method.uchar_at3">uchar_at3</a><a href="#method.schar_at">schar_at</a><a href="#method.schar_at3">schar_at3</a><a href="#method.short_at">short_at</a><a href="#method.short_at3">short_at3</a><a href="#method.int_at">int_at</a><a href="#method.int_at3">int_at3</a><a href="#method.float_at">float_at</a><a href="#method.float_at3">float_at3</a><a href="#method.double_at">double_at</a><a href="#method.double_at3">double_at3</a><a href="#method.set_uchar_at">set_uchar_at</a><a href="#method.set_uchar_at3">set_uchar_at3</a><a href="#method.set_schar_at">set_schar_at</a><a href="#method.set_schar_at3">set_schar_at3</a><a href="#method.set_short_at">set_short_at</a><a href="#method.set_short_at3">set_short_at3</a><a href="#method.set_int_at">set_int_at</a><a href="#method.set_int_at3">set_int_at3</a><a href="#method.set_float_at">set_float_at</a><a href="#method.set_float_at3">set_float_at3</a><a href="#method.set_double_at">set_double_at</a><a href="#method.set_double_at3">set_double_at3</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Debug">Debug</a><a href="#impl-Clone">Clone</a><a href="#impl-Drop">Drop</a><a href="#impl-From%3CMat%3E">From&lt;Mat&gt;</a></div></div><p class='location'><a href='../index.html'>rustcv</a>::<wbr><a href='index.html'>core</a></p><script>window.sidebarCurrent = {name: 'Mat', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+    </nav>
+
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>rustcv</a>::<wbr><a href='index.html'>core</a>::<wbr><a class="struct" href=''>Mat</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/rustcv/core.rs.html#11-13' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Mat { /* fields omitted */ }</pre><div class='docblock'><p>The class <code>Mat</code> represents an n-dimensional dense numerical single-channel or multi-channel array.
+It can be used to store real or complex-valued vectors and matrices, grayscale or color images,
+voxel volumes, vector fields, point clouds, tensors, histograms</p>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#106-360' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#108-112' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Creates an empty <code>Mat</code> struct.</p>
+</div><h4 id='method.new_with_size' class="method"><span id='new_with_size.v' class='invisible'><code>pub fn <a href='#method.new_with_size' class='fnname'>new_with_size</a>(rows: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, cols: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, t: <a class="enum" href="../../rustcv/core/enum.CvType.html" title="enum rustcv::core::CvType">CvType</a>) -&gt; <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#115-119' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Creates an empty <code>Mat</code> struct with size.</p>
+</div><h4 id='method.new_from_scalar' class="method"><span id='new_from_scalar.v' class='invisible'><code>pub fn <a href='#method.new_from_scalar' class='fnname'>new_from_scalar</a>(s: <a class="struct" href="../../rustcv/core/struct.Scalar.html" title="struct rustcv::core::Scalar">Scalar</a>, t: <a class="enum" href="../../rustcv/core/enum.CvType.html" title="enum rustcv::core::CvType">CvType</a>) -&gt; <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#122-126' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Creates an empty <code>Mat</code> struct with a constant scalar.</p>
+</div><h4 id='method.new_from_bytes' class="method"><span id='new_from_bytes.v' class='invisible'><code>pub fn <a href='#method.new_from_bytes' class='fnname'>new_from_bytes</a>(rows: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, cols: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, t: <a class="enum" href="../../rustcv/core/enum.CvType.html" title="enum rustcv::core::CvType">CvType</a>, buf: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;mut [</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i8.html">i8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>) -&gt; <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#129-133' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Creates an empty <code>Mat</code> struct from buffer.</p>
+</div><h4 id='method.empty' class="method"><span id='empty.v' class='invisible'><code>pub fn <a href='#method.empty' class='fnname'>empty</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#136-138' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Determines if the Mat is empty or not.</p>
+</div><h4 id='method.copy_to' class="method"><span id='copy_to.v' class='invisible'><code>pub fn <a href='#method.copy_to' class='fnname'>copy_to</a>(&amp;self, dst: &amp;mut <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#144-146' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Copies Mat into destination Mat.</p>
+<p>For further details, please see <a href="https://docs.opencv.org/master/d3/d63/classcv_1_1Mat.html#a33fd5d125b4c302b0c9aa86980791a77">OpenCV
+documentation</a></p>
+</div><h4 id='method.copy_to_with_mask' class="method"><span id='copy_to_with_mask.v' class='invisible'><code>pub fn <a href='#method.copy_to_with_mask' class='fnname'>copy_to_with_mask</a>(&amp;self, dst: &amp;mut <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a>, mask: &amp;<a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#149-151' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Copies Mat into destination Mat, with a mask.</p>
+</div><h4 id='method.convert_to' class="method"><span id='convert_to.v' class='invisible'><code>pub fn <a href='#method.convert_to' class='fnname'>convert_to</a>(&amp;self, dst: &amp;mut <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a>, t: <a class="enum" href="../../rustcv/core/enum.CvType.html" title="enum rustcv::core::CvType">CvType</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#157-159' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Converts Mat into destination Mat.</p>
+<p>For further details, please see <a href="https://docs.opencv.org/master/d3/d63/classcv_1_1Mat.html#adf88c60c5b4980e05bb556080916978b">OpenCV
+documentation</a></p>
+</div><h4 id='method.to_bytes' class="method"><div class="important-traits"><div class='tooltip'>ⓘ<span class='tooltiptext'>Important traits for <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>&gt;</span></div><div class="content hidden"><h3 class="important">Important traits for <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>&gt;</h3><code class="content"><span class="where fmt-newline">impl <a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html" title="trait std::io::Write">Write</a> for <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>&gt;</span></code></div></div><span id='to_bytes.v' class='invisible'><code>pub fn <a href='#method.to_bytes' class='fnname'>to_bytes</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#165-168' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Copies the underlying Mat data to a byte array.</p>
+<p>For further details, please see <a href="https://docs.opencv.org/3.3.1/d3/d63/classcv_1_1Mat.html#a4d33bed1c850265370d2af0ff02e1564">OpenCV
+documentation</a></p>
+</div><h4 id='method.region' class="method"><span id='region.v' class='invisible'><code>pub fn <a href='#method.region' class='fnname'>region</a>(&amp;self, roi: <a class="struct" href="../../rustcv/core/struct.Rect.html" title="struct rustcv::core::Rect">Rect</a>) -&gt; <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#173-175' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a new Mat that points to a region of this Mat. Changes made to
+the region Mat will affect the original Mat, since they are pointers to
+the underlying OpenCV Mat object.</p>
+</div><h4 id='method.reshape' class="method"><span id='reshape.v' class='invisible'><code>pub fn <a href='#method.reshape' class='fnname'>reshape</a>(&amp;self, channel: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, rows: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#180-182' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Changes the shape and/or the number of channels of a 2D matrix without
+copying the data. The method makes a new matrix header for the internal
+data.</p>
+</div><h4 id='method.convert_fp16' class="method"><span id='convert_fp16.v' class='invisible'><code>pub fn <a href='#method.convert_fp16' class='fnname'>convert_fp16</a>(&amp;self) -&gt; <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#191-193' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Converts a Mat to half-precision floating point.</p>
+<p>This function converts FP32 (single precision floating point) from/to
+FP16 (half precision floating point). The input array has to have type
+of CV_32F or CV_16S to represent the bit depth. If the input array is
+neither of them, the function will raise an error. The format of half
+precision floating point is defined in IEEE 754-2008.</p>
+</div><h4 id='method.mean' class="method"><span id='mean.v' class='invisible'><code>pub fn <a href='#method.mean' class='fnname'>mean</a>(&amp;self) -&gt; <a class="struct" href="../../rustcv/core/struct.Scalar.html" title="struct rustcv::core::Scalar">Scalar</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#198-200' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Calculates the mean value M of array elements, independently for each
+channel, and return it as Scalar.
+TODO: pass second paramter with mask</p>
+</div><h4 id='method.sum' class="method"><span id='sum.v' class='invisible'><code>pub fn <a href='#method.sum' class='fnname'>sum</a>(&amp;self) -&gt; <a class="struct" href="../../rustcv/core/struct.Scalar.html" title="struct rustcv::core::Scalar">Scalar</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#203-205' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Calculates the per-channel pixel sum of an image.</p>
+</div><h4 id='method.lookup_table_transform' class="method"><span id='lookup_table_transform.v' class='invisible'><code>pub fn <a href='#method.lookup_table_transform' class='fnname'>lookup_table_transform</a>(&amp;self, table: &amp;<a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a>, dst: &amp;mut <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#211-213' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs a look-up table transform of an array.</p>
+<p>The function LUT fills the output array with values from the look-up table.
+Indices of the entries are taken from the input array.</p>
+</div><h4 id='method.rows' class="method"><span id='rows.v' class='invisible'><code>pub fn <a href='#method.rows' class='fnname'>rows</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#216-218' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns the number of rows for this Mat.</p>
+</div><h4 id='method.cols' class="method"><span id='cols.v' class='invisible'><code>pub fn <a href='#method.cols' class='fnname'>cols</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#221-223' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns the number of cols for this Mat.</p>
+</div><h4 id='method.channels' class="method"><span id='channels.v' class='invisible'><code>pub fn <a href='#method.channels' class='fnname'>channels</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#226-228' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns the number of channels for this Mat.</p>
+</div><h4 id='method.cv_type' class="method"><span id='cv_type.v' class='invisible'><code>pub fn <a href='#method.cv_type' class='fnname'>cv_type</a>(&amp;self) -&gt; <a class="enum" href="../../rustcv/core/enum.CvType.html" title="enum rustcv::core::CvType">CvType</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#231-234' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns the type for this Mat.</p>
+</div><h4 id='method.cv_step' class="method"><span id='cv_step.v' class='invisible'><code>pub fn <a href='#method.cv_step' class='fnname'>cv_step</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#237-239' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns the number of bytes each matrix row occupies.</p>
+</div><h4 id='method.uchar_at' class="method"><span id='uchar_at.v' class='invisible'><code>pub fn <a href='#method.uchar_at' class='fnname'>uchar_at</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#242-244' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific row/col in this Mat (must be CV_8U).</p>
+</div><h4 id='method.uchar_at3' class="method"><span id='uchar_at3.v' class='invisible'><code>pub fn <a href='#method.uchar_at3' class='fnname'>uchar_at3</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#247-249' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific x, y, z in this Mat (must be CV_8U).</p>
+</div><h4 id='method.schar_at' class="method"><span id='schar_at.v' class='invisible'><code>pub fn <a href='#method.schar_at' class='fnname'>schar_at</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i8.html">i8</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#252-254' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific row/col in this Mat (must be CV_8S).</p>
+</div><h4 id='method.schar_at3' class="method"><span id='schar_at3.v' class='invisible'><code>pub fn <a href='#method.schar_at3' class='fnname'>schar_at3</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i8.html">i8</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#257-259' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific x, y, z in this Mat (must be CV_8S).</p>
+</div><h4 id='method.short_at' class="method"><span id='short_at.v' class='invisible'><code>pub fn <a href='#method.short_at' class='fnname'>short_at</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i16.html">i16</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#262-264' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific row/col in this Mat (must be CV_16S).</p>
+</div><h4 id='method.short_at3' class="method"><span id='short_at3.v' class='invisible'><code>pub fn <a href='#method.short_at3' class='fnname'>short_at3</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i16.html">i16</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#267-269' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific x, y, z in this Mat (must be CV_16S).</p>
+</div><h4 id='method.int_at' class="method"><span id='int_at.v' class='invisible'><code>pub fn <a href='#method.int_at' class='fnname'>int_at</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#272-274' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific row/col in this Mat (must be CV_32S).</p>
+</div><h4 id='method.int_at3' class="method"><span id='int_at3.v' class='invisible'><code>pub fn <a href='#method.int_at3' class='fnname'>int_at3</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#277-279' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific x, y, z in this Mat (must be CV_32S).</p>
+</div><h4 id='method.float_at' class="method"><span id='float_at.v' class='invisible'><code>pub fn <a href='#method.float_at' class='fnname'>float_at</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#282-284' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific row/col in this Mat (must be CV_32F).</p>
+</div><h4 id='method.float_at3' class="method"><span id='float_at3.v' class='invisible'><code>pub fn <a href='#method.float_at3' class='fnname'>float_at3</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#287-289' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific x, y, z in this Mat (must be CV_32F).</p>
+</div><h4 id='method.double_at' class="method"><span id='double_at.v' class='invisible'><code>pub fn <a href='#method.double_at' class='fnname'>double_at</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#292-294' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific row/col in this Mat (must be CV_64F).</p>
+</div><h4 id='method.double_at3' class="method"><span id='double_at3.v' class='invisible'><code>pub fn <a href='#method.double_at3' class='fnname'>double_at3</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#297-299' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a value from a specific x, y, z in this Mat (must be CV_64F).</p>
+</div><h4 id='method.set_uchar_at' class="method"><span id='set_uchar_at.v' class='invisible'><code>pub fn <a href='#method.set_uchar_at' class='fnname'>set_uchar_at</a>(&amp;mut self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#302-304' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific row/col in this Mat (must be CV_8U).</p>
+</div><h4 id='method.set_uchar_at3' class="method"><span id='set_uchar_at3.v' class='invisible'><code>pub fn <a href='#method.set_uchar_at3' class='fnname'>set_uchar_at3</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#307-309' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific x, y, z in this Mat (must be CV_8U).</p>
+</div><h4 id='method.set_schar_at' class="method"><span id='set_schar_at.v' class='invisible'><code>pub fn <a href='#method.set_schar_at' class='fnname'>set_schar_at</a>(&amp;mut self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i8.html">i8</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#312-314' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific row/col in this Mat (must be CV_8S).</p>
+</div><h4 id='method.set_schar_at3' class="method"><span id='set_schar_at3.v' class='invisible'><code>pub fn <a href='#method.set_schar_at3' class='fnname'>set_schar_at3</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i8.html">i8</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#317-319' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific x, y, z in this Mat (must be CV_8S).</p>
+</div><h4 id='method.set_short_at' class="method"><span id='set_short_at.v' class='invisible'><code>pub fn <a href='#method.set_short_at' class='fnname'>set_short_at</a>(&amp;mut self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i16.html">i16</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#322-324' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific row/col in this Mat (must be CV_16S).</p>
+</div><h4 id='method.set_short_at3' class="method"><span id='set_short_at3.v' class='invisible'><code>pub fn <a href='#method.set_short_at3' class='fnname'>set_short_at3</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i16.html">i16</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#327-329' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific x, y, z in this Mat (must be CV_16S).</p>
+</div><h4 id='method.set_int_at' class="method"><span id='set_int_at.v' class='invisible'><code>pub fn <a href='#method.set_int_at' class='fnname'>set_int_at</a>(&amp;mut self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#332-334' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific row/col in this Mat (must be CV_32S).</p>
+</div><h4 id='method.set_int_at3' class="method"><span id='set_int_at3.v' class='invisible'><code>pub fn <a href='#method.set_int_at3' class='fnname'>set_int_at3</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#337-339' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific x, y, z in this Mat (must be CV_32S).</p>
+</div><h4 id='method.set_float_at' class="method"><span id='set_float_at.v' class='invisible'><code>pub fn <a href='#method.set_float_at' class='fnname'>set_float_at</a>(&amp;mut self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#342-344' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific row/col in this Mat (must be CV_32F).</p>
+</div><h4 id='method.set_float_at3' class="method"><span id='set_float_at3.v' class='invisible'><code>pub fn <a href='#method.set_float_at3' class='fnname'>set_float_at3</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#347-349' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific x, y, z in this Mat (must be CV_32F).</p>
+</div><h4 id='method.set_double_at' class="method"><span id='set_double_at.v' class='invisible'><code>pub fn <a href='#method.set_double_at' class='fnname'>set_double_at</a>(&amp;mut self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, col: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#352-354' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific row/col in this Mat (must be CV_64F).</p>
+</div><h4 id='method.set_double_at3' class="method"><span id='set_double_at3.v' class='invisible'><code>pub fn <a href='#method.set_double_at3' class='fnname'>set_double_at3</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, val: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#357-359' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Sets a value to a specific x, y, z in this Mat (must be CV_64F).</p>
+</div></div>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Debug' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code><a href='#impl-Debug' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#10' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#10' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>
+</div></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#15-21' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; Self</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#16-20' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 id='impl-Drop' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html" title="trait core::ops::drop::Drop">Drop</a> for <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code><a href='#impl-Drop' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#23-27' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.drop' class="method"><span id='drop.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html#tymethod.drop' class='fnname'>drop</a>(&amp;mut self)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#24-26' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Executes the destructor for this type. <a href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html#tymethod.drop">Read more</a></p>
+</div></div><h3 id='impl-From%3CMat%3E' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;<a class="type" href="../../opencv_sys/type.Mat.html" title="type opencv_sys::Mat">Mat</a>&gt; for <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code><a href='#impl-From%3CMat%3E' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#100-104' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from' class="method"><span id='from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(inner: <a class="type" href="../../opencv_sys/type.Mat.html" title="type opencv_sys::Mat">Mat</a>) -&gt; <a class="struct" href="../../rustcv/core/struct.Mat.html" title="struct rustcv::core::Mat">Mat</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/core.rs.html#101-103' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs the conversion.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt><kbd>?</kbd></dt>
+                    <dd>Show this help dialog</dd>
+                    <dt><kbd>S</kbd></dt>
+                    <dd>Focus the search field</dd>
+                    <dt><kbd>↑</kbd></dt>
+                    <dd>Move up in search results</dd>
+                    <dt><kbd>↓</kbd></dt>
+                    <dd>Move down in search results</dd>
+                    <dt><kbd>↹</kbd></dt>
+                    <dd>Switch tab</dd>
+                    <dt><kbd>&#9166;</kbd></dt>
+                    <dd>Go to active search result</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "rustcv";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

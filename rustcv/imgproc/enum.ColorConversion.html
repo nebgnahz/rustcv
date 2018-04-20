@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ColorConversion` enum in crate `rustcv`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ColorConversion">
+
+    <title>rustcv::imgproc::ColorConversion - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
+    
+
+    
+    
+</head>
+<body class="rustdoc enum">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
+        
+        <p class='location'>Enum ColorConversion</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#variants">Variants</a><div class="sidebar-links"><a href="#variant.BGR2BGRA">BGR2BGRA</a><a href="#variant.BGRA2BGR">BGRA2BGR</a><a href="#variant.BGR2RGBA">BGR2RGBA</a><a href="#variant.RGBA2BGR">RGBA2BGR</a><a href="#variant.BGR2RGB">BGR2RGB</a><a href="#variant.BGRA2RGBA">BGRA2RGBA</a><a href="#variant.BGR2GRAY">BGR2GRAY</a><a href="#variant.RGB2GRAY">RGB2GRAY</a><a href="#variant.GRAY2BGR">GRAY2BGR</a><a href="#variant.GRAY2BGRA">GRAY2BGRA</a><a href="#variant.BGRA2GRAY">BGRA2GRAY</a><a href="#variant.RGBA2GRAY">RGBA2GRAY</a><a href="#variant.BGR2BGR565">BGR2BGR565</a><a href="#variant.RGB2BGR565">RGB2BGR565</a><a href="#variant.BGR5652BGR">BGR5652BGR</a><a href="#variant.BGR5652RGB">BGR5652RGB</a><a href="#variant.BGRA2BGR565">BGRA2BGR565</a><a href="#variant.RGBA2BGR565">RGBA2BGR565</a><a href="#variant.BGR5652BGRA">BGR5652BGRA</a><a href="#variant.BGR5652RGBA">BGR5652RGBA</a><a href="#variant.GRAY2BGR565">GRAY2BGR565</a><a href="#variant.BGR5652GRAY">BGR5652GRAY</a><a href="#variant.BGR2BGR555">BGR2BGR555</a><a href="#variant.RGB2BGR555">RGB2BGR555</a><a href="#variant.BGR5552BGR">BGR5552BGR</a><a href="#variant.BGR5552RGB">BGR5552RGB</a><a href="#variant.BGRA2BGR555">BGRA2BGR555</a><a href="#variant.RGBA2BGR555">RGBA2BGR555</a><a href="#variant.BGR5552BGRA">BGR5552BGRA</a><a href="#variant.BGR5552RGBA">BGR5552RGBA</a><a href="#variant.GRAY2BGR555">GRAY2BGR555</a><a href="#variant.BGR5552GRAY">BGR5552GRAY</a><a href="#variant.BGR2XYZ">BGR2XYZ</a><a href="#variant.RGB2XYZ">RGB2XYZ</a><a href="#variant.XYZ2BGR">XYZ2BGR</a><a href="#variant.XYZ2RGB">XYZ2RGB</a><a href="#variant.BGR2YCrCb">BGR2YCrCb</a><a href="#variant.RGB2YCrCb">RGB2YCrCb</a><a href="#variant.YCrCb2BGR">YCrCb2BGR</a><a href="#variant.YCrCb2RGB">YCrCb2RGB</a><a href="#variant.BGR2HSV">BGR2HSV</a><a href="#variant.RGB2HSV">RGB2HSV</a><a href="#variant.BGR2Lab">BGR2Lab</a><a href="#variant.RGB2Lab">RGB2Lab</a><a href="#variant.BGR2Luv">BGR2Luv</a><a href="#variant.RGB2Luv">RGB2Luv</a><a href="#variant.BGR2HLS">BGR2HLS</a><a href="#variant.RGB2HLS">RGB2HLS</a><a href="#variant.HSV2BGR">HSV2BGR</a><a href="#variant.HSV2RGB">HSV2RGB</a><a href="#variant.Lab2BGR">Lab2BGR</a><a href="#variant.Lab2RGB">Lab2RGB</a><a href="#variant.Luv2BGR">Luv2BGR</a><a href="#variant.Luv2RGB">Luv2RGB</a><a href="#variant.HLS2BGR">HLS2BGR</a><a href="#variant.HLS2RGB">HLS2RGB</a><a href="#variant.BGR2HSV_FULL">BGR2HSV_FULL</a><a href="#variant.RGB2HSV_FULL">RGB2HSV_FULL</a><a href="#variant.BGR2HLS_FULL">BGR2HLS_FULL</a><a href="#variant.RGB2HLS_FULL">RGB2HLS_FULL</a><a href="#variant.HSV2BGR_FULL">HSV2BGR_FULL</a><a href="#variant.HSV2RGB_FULL">HSV2RGB_FULL</a><a href="#variant.HLS2BGR_FULL">HLS2BGR_FULL</a><a href="#variant.HLS2RGB_FULL">HLS2RGB_FULL</a><a href="#variant.LBGR2Lab">LBGR2Lab</a><a href="#variant.LRGB2Lab">LRGB2Lab</a><a href="#variant.LBGR2Luv">LBGR2Luv</a><a href="#variant.LRGB2Luv">LRGB2Luv</a><a href="#variant.Lab2LBGR">Lab2LBGR</a><a href="#variant.Lab2LRGB">Lab2LRGB</a><a href="#variant.Luv2LBGR">Luv2LBGR</a><a href="#variant.Luv2LRGB">Luv2LRGB</a><a href="#variant.BGR2YUV">BGR2YUV</a><a href="#variant.RGB2YUV">RGB2YUV</a><a href="#variant.YUV2BGR">YUV2BGR</a><a href="#variant.YUV2RGB">YUV2RGB</a><a href="#variant.YUV2RGB_NV12">YUV2RGB_NV12</a><a href="#variant.YUV2BGR_NV12">YUV2BGR_NV12</a><a href="#variant.YUV2RGB_NV21">YUV2RGB_NV21</a><a href="#variant.YUV2BGR_NV21">YUV2BGR_NV21</a><a href="#variant.YUV2RGBA_NV12">YUV2RGBA_NV12</a><a href="#variant.YUV2BGRA_NV12">YUV2BGRA_NV12</a><a href="#variant.YUV2RGBA_NV21">YUV2RGBA_NV21</a><a href="#variant.YUV2BGRA_NV21">YUV2BGRA_NV21</a><a href="#variant.YUV2RGB_YV12">YUV2RGB_YV12</a><a href="#variant.YUV2BGR_YV12">YUV2BGR_YV12</a><a href="#variant.YUV2RGB_IYUV">YUV2RGB_IYUV</a><a href="#variant.YUV2BGR_IYUV">YUV2BGR_IYUV</a><a href="#variant.YUV2RGBA_YV12">YUV2RGBA_YV12</a><a href="#variant.YUV2BGRA_YV12">YUV2BGRA_YV12</a><a href="#variant.YUV2RGBA_IYUV">YUV2RGBA_IYUV</a><a href="#variant.YUV2BGRA_IYUV">YUV2BGRA_IYUV</a><a href="#variant.YUV2GRAY_420">YUV2GRAY_420</a><a href="#variant.YUV2RGB_UYVY">YUV2RGB_UYVY</a><a href="#variant.YUV2BGR_UYVY">YUV2BGR_UYVY</a><a href="#variant.YUV2RGBA_UYVY">YUV2RGBA_UYVY</a><a href="#variant.YUV2BGRA_UYVY">YUV2BGRA_UYVY</a><a href="#variant.YUV2RGB_YUY2">YUV2RGB_YUY2</a><a href="#variant.YUV2BGR_YUY2">YUV2BGR_YUY2</a><a href="#variant.YUV2RGB_YVYU">YUV2RGB_YVYU</a><a href="#variant.YUV2BGR_YVYU">YUV2BGR_YVYU</a><a href="#variant.YUV2RGBA_YUY2">YUV2RGBA_YUY2</a><a href="#variant.YUV2BGRA_YUY2">YUV2BGRA_YUY2</a><a href="#variant.YUV2RGBA_YVYU">YUV2RGBA_YVYU</a><a href="#variant.YUV2BGRA_YVYU">YUV2BGRA_YVYU</a><a href="#variant.YUV2GRAY_UYVY">YUV2GRAY_UYVY</a><a href="#variant.YUV2GRAY_YUY2">YUV2GRAY_YUY2</a><a href="#variant.RGBA2mRGBA">RGBA2mRGBA</a><a href="#variant.mRGBA2RGBA">mRGBA2RGBA</a><a href="#variant.RGB2YUV_I420">RGB2YUV_I420</a><a href="#variant.BGR2YUV_I420">BGR2YUV_I420</a><a href="#variant.RGBA2YUV_I420">RGBA2YUV_I420</a><a href="#variant.BGRA2YUV_I420">BGRA2YUV_I420</a><a href="#variant.RGB2YUV_YV12">RGB2YUV_YV12</a><a href="#variant.BGR2YUV_YV12">BGR2YUV_YV12</a><a href="#variant.RGBA2YUV_YV12">RGBA2YUV_YV12</a><a href="#variant.BGRA2YUV_YV12">BGRA2YUV_YV12</a><a href="#variant.BayerBG2BGR">BayerBG2BGR</a><a href="#variant.BayerGB2BGR">BayerGB2BGR</a><a href="#variant.BayerRG2BGR">BayerRG2BGR</a><a href="#variant.BayerGR2BGR">BayerGR2BGR</a><a href="#variant.BayerBG2GRAY">BayerBG2GRAY</a><a href="#variant.BayerGB2GRAY">BayerGB2GRAY</a><a href="#variant.BayerRG2GRAY">BayerRG2GRAY</a><a href="#variant.BayerGR2GRAY">BayerGR2GRAY</a><a href="#variant.BayerBG2BGR_VNG">BayerBG2BGR_VNG</a><a href="#variant.BayerGB2BGR_VNG">BayerGB2BGR_VNG</a><a href="#variant.BayerRG2BGR_VNG">BayerRG2BGR_VNG</a><a href="#variant.BayerGR2BGR_VNG">BayerGR2BGR_VNG</a><a href="#variant.BayerBG2BGR_EA">BayerBG2BGR_EA</a><a href="#variant.BayerGB2BGR_EA">BayerGB2BGR_EA</a><a href="#variant.BayerRG2BGR_EA">BayerRG2BGR_EA</a><a href="#variant.BayerGR2BGR_EA">BayerGR2BGR_EA</a><a href="#variant.COLORCVT_MAX">COLORCVT_MAX</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Debug">Debug</a><a href="#impl-Clone">Clone</a><a href="#impl-Copy">Copy</a><a href="#impl-Eq">Eq</a><a href="#impl-PartialEq">PartialEq</a><a href="#impl-Hash">Hash</a></div></div><p class='location'><a href='../index.html'>rustcv</a>::<wbr><a href='index.html'>imgproc</a></p><script>window.sidebarCurrent = {name: 'ColorConversion', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+    </nav>
+
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>rustcv</a>::<wbr><a href='index.html'>imgproc</a>::<wbr><a class="enum" href=''>ColorConversion</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/rustcv/imgproc.rs.html#22-157' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'><div class="docblock attributes">#[repr(C)]
+</div>pub enum ColorConversion {
+    BGR2BGRA,
+    BGRA2BGR,
+    BGR2RGBA,
+    RGBA2BGR,
+    BGR2RGB,
+    BGRA2RGBA,
+    BGR2GRAY,
+    RGB2GRAY,
+    GRAY2BGR,
+    GRAY2BGRA,
+    BGRA2GRAY,
+    RGBA2GRAY,
+    BGR2BGR565,
+    RGB2BGR565,
+    BGR5652BGR,
+    BGR5652RGB,
+    BGRA2BGR565,
+    RGBA2BGR565,
+    BGR5652BGRA,
+    BGR5652RGBA,
+    GRAY2BGR565,
+    BGR5652GRAY,
+    BGR2BGR555,
+    RGB2BGR555,
+    BGR5552BGR,
+    BGR5552RGB,
+    BGRA2BGR555,
+    RGBA2BGR555,
+    BGR5552BGRA,
+    BGR5552RGBA,
+    GRAY2BGR555,
+    BGR5552GRAY,
+    BGR2XYZ,
+    RGB2XYZ,
+    XYZ2BGR,
+    XYZ2RGB,
+    BGR2YCrCb,
+    RGB2YCrCb,
+    YCrCb2BGR,
+    YCrCb2RGB,
+    BGR2HSV,
+    RGB2HSV,
+    BGR2Lab,
+    RGB2Lab,
+    BGR2Luv,
+    RGB2Luv,
+    BGR2HLS,
+    RGB2HLS,
+    HSV2BGR,
+    HSV2RGB,
+    Lab2BGR,
+    Lab2RGB,
+    Luv2BGR,
+    Luv2RGB,
+    HLS2BGR,
+    HLS2RGB,
+    BGR2HSV_FULL,
+    RGB2HSV_FULL,
+    BGR2HLS_FULL,
+    RGB2HLS_FULL,
+    HSV2BGR_FULL,
+    HSV2RGB_FULL,
+    HLS2BGR_FULL,
+    HLS2RGB_FULL,
+    LBGR2Lab,
+    LRGB2Lab,
+    LBGR2Luv,
+    LRGB2Luv,
+    Lab2LBGR,
+    Lab2LRGB,
+    Luv2LBGR,
+    Luv2LRGB,
+    BGR2YUV,
+    RGB2YUV,
+    YUV2BGR,
+    YUV2RGB,
+    YUV2RGB_NV12,
+    YUV2BGR_NV12,
+    YUV2RGB_NV21,
+    YUV2BGR_NV21,
+    YUV2RGBA_NV12,
+    YUV2BGRA_NV12,
+    YUV2RGBA_NV21,
+    YUV2BGRA_NV21,
+    YUV2RGB_YV12,
+    YUV2BGR_YV12,
+    YUV2RGB_IYUV,
+    YUV2BGR_IYUV,
+    YUV2RGBA_YV12,
+    YUV2BGRA_YV12,
+    YUV2RGBA_IYUV,
+    YUV2BGRA_IYUV,
+    YUV2GRAY_420,
+    YUV2RGB_UYVY,
+    YUV2BGR_UYVY,
+    YUV2RGBA_UYVY,
+    YUV2BGRA_UYVY,
+    YUV2RGB_YUY2,
+    YUV2BGR_YUY2,
+    YUV2RGB_YVYU,
+    YUV2BGR_YVYU,
+    YUV2RGBA_YUY2,
+    YUV2BGRA_YUY2,
+    YUV2RGBA_YVYU,
+    YUV2BGRA_YVYU,
+    YUV2GRAY_UYVY,
+    YUV2GRAY_YUY2,
+    RGBA2mRGBA,
+    mRGBA2RGBA,
+    RGB2YUV_I420,
+    BGR2YUV_I420,
+    RGBA2YUV_I420,
+    BGRA2YUV_I420,
+    RGB2YUV_YV12,
+    BGR2YUV_YV12,
+    RGBA2YUV_YV12,
+    BGRA2YUV_YV12,
+    BayerBG2BGR,
+    BayerGB2BGR,
+    BayerRG2BGR,
+    BayerGR2BGR,
+    BayerBG2GRAY,
+    BayerGB2GRAY,
+    BayerRG2GRAY,
+    BayerGR2GRAY,
+    BayerBG2BGR_VNG,
+    BayerGB2BGR_VNG,
+    BayerRG2BGR_VNG,
+    BayerGR2BGR_VNG,
+    BayerBG2BGR_EA,
+    BayerGB2BGR_EA,
+    BayerRG2BGR_EA,
+    BayerGR2BGR_EA,
+    COLORCVT_MAX,
+}</pre><div class='docblock'><p>Color conversion code used in <code>cvt_color</code>.</p>
+</div><h2 id='variants' class='variants small-section-header'>
+                   Variants<a href='#variants' class='anchor'></a></h2>
+<span id="variant.BGR2BGRA" class="variant small-section-header"><a href="#variant.BGR2BGRA" class="anchor field"></a><span id='BGR2BGRA.v' class='invisible'><code>BGR2BGRA</code></span></span><span id="variant.BGRA2BGR" class="variant small-section-header"><a href="#variant.BGRA2BGR" class="anchor field"></a><span id='BGRA2BGR.v' class='invisible'><code>BGRA2BGR</code></span></span><span id="variant.BGR2RGBA" class="variant small-section-header"><a href="#variant.BGR2RGBA" class="anchor field"></a><span id='BGR2RGBA.v' class='invisible'><code>BGR2RGBA</code></span></span><span id="variant.RGBA2BGR" class="variant small-section-header"><a href="#variant.RGBA2BGR" class="anchor field"></a><span id='RGBA2BGR.v' class='invisible'><code>RGBA2BGR</code></span></span><span id="variant.BGR2RGB" class="variant small-section-header"><a href="#variant.BGR2RGB" class="anchor field"></a><span id='BGR2RGB.v' class='invisible'><code>BGR2RGB</code></span></span><span id="variant.BGRA2RGBA" class="variant small-section-header"><a href="#variant.BGRA2RGBA" class="anchor field"></a><span id='BGRA2RGBA.v' class='invisible'><code>BGRA2RGBA</code></span></span><span id="variant.BGR2GRAY" class="variant small-section-header"><a href="#variant.BGR2GRAY" class="anchor field"></a><span id='BGR2GRAY.v' class='invisible'><code>BGR2GRAY</code></span></span><span id="variant.RGB2GRAY" class="variant small-section-header"><a href="#variant.RGB2GRAY" class="anchor field"></a><span id='RGB2GRAY.v' class='invisible'><code>RGB2GRAY</code></span></span><span id="variant.GRAY2BGR" class="variant small-section-header"><a href="#variant.GRAY2BGR" class="anchor field"></a><span id='GRAY2BGR.v' class='invisible'><code>GRAY2BGR</code></span></span><span id="variant.GRAY2BGRA" class="variant small-section-header"><a href="#variant.GRAY2BGRA" class="anchor field"></a><span id='GRAY2BGRA.v' class='invisible'><code>GRAY2BGRA</code></span></span><span id="variant.BGRA2GRAY" class="variant small-section-header"><a href="#variant.BGRA2GRAY" class="anchor field"></a><span id='BGRA2GRAY.v' class='invisible'><code>BGRA2GRAY</code></span></span><span id="variant.RGBA2GRAY" class="variant small-section-header"><a href="#variant.RGBA2GRAY" class="anchor field"></a><span id='RGBA2GRAY.v' class='invisible'><code>RGBA2GRAY</code></span></span><span id="variant.BGR2BGR565" class="variant small-section-header"><a href="#variant.BGR2BGR565" class="anchor field"></a><span id='BGR2BGR565.v' class='invisible'><code>BGR2BGR565</code></span></span><span id="variant.RGB2BGR565" class="variant small-section-header"><a href="#variant.RGB2BGR565" class="anchor field"></a><span id='RGB2BGR565.v' class='invisible'><code>RGB2BGR565</code></span></span><span id="variant.BGR5652BGR" class="variant small-section-header"><a href="#variant.BGR5652BGR" class="anchor field"></a><span id='BGR5652BGR.v' class='invisible'><code>BGR5652BGR</code></span></span><span id="variant.BGR5652RGB" class="variant small-section-header"><a href="#variant.BGR5652RGB" class="anchor field"></a><span id='BGR5652RGB.v' class='invisible'><code>BGR5652RGB</code></span></span><span id="variant.BGRA2BGR565" class="variant small-section-header"><a href="#variant.BGRA2BGR565" class="anchor field"></a><span id='BGRA2BGR565.v' class='invisible'><code>BGRA2BGR565</code></span></span><span id="variant.RGBA2BGR565" class="variant small-section-header"><a href="#variant.RGBA2BGR565" class="anchor field"></a><span id='RGBA2BGR565.v' class='invisible'><code>RGBA2BGR565</code></span></span><span id="variant.BGR5652BGRA" class="variant small-section-header"><a href="#variant.BGR5652BGRA" class="anchor field"></a><span id='BGR5652BGRA.v' class='invisible'><code>BGR5652BGRA</code></span></span><span id="variant.BGR5652RGBA" class="variant small-section-header"><a href="#variant.BGR5652RGBA" class="anchor field"></a><span id='BGR5652RGBA.v' class='invisible'><code>BGR5652RGBA</code></span></span><span id="variant.GRAY2BGR565" class="variant small-section-header"><a href="#variant.GRAY2BGR565" class="anchor field"></a><span id='GRAY2BGR565.v' class='invisible'><code>GRAY2BGR565</code></span></span><span id="variant.BGR5652GRAY" class="variant small-section-header"><a href="#variant.BGR5652GRAY" class="anchor field"></a><span id='BGR5652GRAY.v' class='invisible'><code>BGR5652GRAY</code></span></span><span id="variant.BGR2BGR555" class="variant small-section-header"><a href="#variant.BGR2BGR555" class="anchor field"></a><span id='BGR2BGR555.v' class='invisible'><code>BGR2BGR555</code></span></span><span id="variant.RGB2BGR555" class="variant small-section-header"><a href="#variant.RGB2BGR555" class="anchor field"></a><span id='RGB2BGR555.v' class='invisible'><code>RGB2BGR555</code></span></span><span id="variant.BGR5552BGR" class="variant small-section-header"><a href="#variant.BGR5552BGR" class="anchor field"></a><span id='BGR5552BGR.v' class='invisible'><code>BGR5552BGR</code></span></span><span id="variant.BGR5552RGB" class="variant small-section-header"><a href="#variant.BGR5552RGB" class="anchor field"></a><span id='BGR5552RGB.v' class='invisible'><code>BGR5552RGB</code></span></span><span id="variant.BGRA2BGR555" class="variant small-section-header"><a href="#variant.BGRA2BGR555" class="anchor field"></a><span id='BGRA2BGR555.v' class='invisible'><code>BGRA2BGR555</code></span></span><span id="variant.RGBA2BGR555" class="variant small-section-header"><a href="#variant.RGBA2BGR555" class="anchor field"></a><span id='RGBA2BGR555.v' class='invisible'><code>RGBA2BGR555</code></span></span><span id="variant.BGR5552BGRA" class="variant small-section-header"><a href="#variant.BGR5552BGRA" class="anchor field"></a><span id='BGR5552BGRA.v' class='invisible'><code>BGR5552BGRA</code></span></span><span id="variant.BGR5552RGBA" class="variant small-section-header"><a href="#variant.BGR5552RGBA" class="anchor field"></a><span id='BGR5552RGBA.v' class='invisible'><code>BGR5552RGBA</code></span></span><span id="variant.GRAY2BGR555" class="variant small-section-header"><a href="#variant.GRAY2BGR555" class="anchor field"></a><span id='GRAY2BGR555.v' class='invisible'><code>GRAY2BGR555</code></span></span><span id="variant.BGR5552GRAY" class="variant small-section-header"><a href="#variant.BGR5552GRAY" class="anchor field"></a><span id='BGR5552GRAY.v' class='invisible'><code>BGR5552GRAY</code></span></span><span id="variant.BGR2XYZ" class="variant small-section-header"><a href="#variant.BGR2XYZ" class="anchor field"></a><span id='BGR2XYZ.v' class='invisible'><code>BGR2XYZ</code></span></span><span id="variant.RGB2XYZ" class="variant small-section-header"><a href="#variant.RGB2XYZ" class="anchor field"></a><span id='RGB2XYZ.v' class='invisible'><code>RGB2XYZ</code></span></span><span id="variant.XYZ2BGR" class="variant small-section-header"><a href="#variant.XYZ2BGR" class="anchor field"></a><span id='XYZ2BGR.v' class='invisible'><code>XYZ2BGR</code></span></span><span id="variant.XYZ2RGB" class="variant small-section-header"><a href="#variant.XYZ2RGB" class="anchor field"></a><span id='XYZ2RGB.v' class='invisible'><code>XYZ2RGB</code></span></span><span id="variant.BGR2YCrCb" class="variant small-section-header"><a href="#variant.BGR2YCrCb" class="anchor field"></a><span id='BGR2YCrCb.v' class='invisible'><code>BGR2YCrCb</code></span></span><span id="variant.RGB2YCrCb" class="variant small-section-header"><a href="#variant.RGB2YCrCb" class="anchor field"></a><span id='RGB2YCrCb.v' class='invisible'><code>RGB2YCrCb</code></span></span><span id="variant.YCrCb2BGR" class="variant small-section-header"><a href="#variant.YCrCb2BGR" class="anchor field"></a><span id='YCrCb2BGR.v' class='invisible'><code>YCrCb2BGR</code></span></span><span id="variant.YCrCb2RGB" class="variant small-section-header"><a href="#variant.YCrCb2RGB" class="anchor field"></a><span id='YCrCb2RGB.v' class='invisible'><code>YCrCb2RGB</code></span></span><span id="variant.BGR2HSV" class="variant small-section-header"><a href="#variant.BGR2HSV" class="anchor field"></a><span id='BGR2HSV.v' class='invisible'><code>BGR2HSV</code></span></span><span id="variant.RGB2HSV" class="variant small-section-header"><a href="#variant.RGB2HSV" class="anchor field"></a><span id='RGB2HSV.v' class='invisible'><code>RGB2HSV</code></span></span><span id="variant.BGR2Lab" class="variant small-section-header"><a href="#variant.BGR2Lab" class="anchor field"></a><span id='BGR2Lab.v' class='invisible'><code>BGR2Lab</code></span></span><span id="variant.RGB2Lab" class="variant small-section-header"><a href="#variant.RGB2Lab" class="anchor field"></a><span id='RGB2Lab.v' class='invisible'><code>RGB2Lab</code></span></span><span id="variant.BGR2Luv" class="variant small-section-header"><a href="#variant.BGR2Luv" class="anchor field"></a><span id='BGR2Luv.v' class='invisible'><code>BGR2Luv</code></span></span><span id="variant.RGB2Luv" class="variant small-section-header"><a href="#variant.RGB2Luv" class="anchor field"></a><span id='RGB2Luv.v' class='invisible'><code>RGB2Luv</code></span></span><span id="variant.BGR2HLS" class="variant small-section-header"><a href="#variant.BGR2HLS" class="anchor field"></a><span id='BGR2HLS.v' class='invisible'><code>BGR2HLS</code></span></span><span id="variant.RGB2HLS" class="variant small-section-header"><a href="#variant.RGB2HLS" class="anchor field"></a><span id='RGB2HLS.v' class='invisible'><code>RGB2HLS</code></span></span><span id="variant.HSV2BGR" class="variant small-section-header"><a href="#variant.HSV2BGR" class="anchor field"></a><span id='HSV2BGR.v' class='invisible'><code>HSV2BGR</code></span></span><span id="variant.HSV2RGB" class="variant small-section-header"><a href="#variant.HSV2RGB" class="anchor field"></a><span id='HSV2RGB.v' class='invisible'><code>HSV2RGB</code></span></span><span id="variant.Lab2BGR" class="variant small-section-header"><a href="#variant.Lab2BGR" class="anchor field"></a><span id='Lab2BGR.v' class='invisible'><code>Lab2BGR</code></span></span><span id="variant.Lab2RGB" class="variant small-section-header"><a href="#variant.Lab2RGB" class="anchor field"></a><span id='Lab2RGB.v' class='invisible'><code>Lab2RGB</code></span></span><span id="variant.Luv2BGR" class="variant small-section-header"><a href="#variant.Luv2BGR" class="anchor field"></a><span id='Luv2BGR.v' class='invisible'><code>Luv2BGR</code></span></span><span id="variant.Luv2RGB" class="variant small-section-header"><a href="#variant.Luv2RGB" class="anchor field"></a><span id='Luv2RGB.v' class='invisible'><code>Luv2RGB</code></span></span><span id="variant.HLS2BGR" class="variant small-section-header"><a href="#variant.HLS2BGR" class="anchor field"></a><span id='HLS2BGR.v' class='invisible'><code>HLS2BGR</code></span></span><span id="variant.HLS2RGB" class="variant small-section-header"><a href="#variant.HLS2RGB" class="anchor field"></a><span id='HLS2RGB.v' class='invisible'><code>HLS2RGB</code></span></span><span id="variant.BGR2HSV_FULL" class="variant small-section-header"><a href="#variant.BGR2HSV_FULL" class="anchor field"></a><span id='BGR2HSV_FULL.v' class='invisible'><code>BGR2HSV_FULL</code></span></span><span id="variant.RGB2HSV_FULL" class="variant small-section-header"><a href="#variant.RGB2HSV_FULL" class="anchor field"></a><span id='RGB2HSV_FULL.v' class='invisible'><code>RGB2HSV_FULL</code></span></span><span id="variant.BGR2HLS_FULL" class="variant small-section-header"><a href="#variant.BGR2HLS_FULL" class="anchor field"></a><span id='BGR2HLS_FULL.v' class='invisible'><code>BGR2HLS_FULL</code></span></span><span id="variant.RGB2HLS_FULL" class="variant small-section-header"><a href="#variant.RGB2HLS_FULL" class="anchor field"></a><span id='RGB2HLS_FULL.v' class='invisible'><code>RGB2HLS_FULL</code></span></span><span id="variant.HSV2BGR_FULL" class="variant small-section-header"><a href="#variant.HSV2BGR_FULL" class="anchor field"></a><span id='HSV2BGR_FULL.v' class='invisible'><code>HSV2BGR_FULL</code></span></span><span id="variant.HSV2RGB_FULL" class="variant small-section-header"><a href="#variant.HSV2RGB_FULL" class="anchor field"></a><span id='HSV2RGB_FULL.v' class='invisible'><code>HSV2RGB_FULL</code></span></span><span id="variant.HLS2BGR_FULL" class="variant small-section-header"><a href="#variant.HLS2BGR_FULL" class="anchor field"></a><span id='HLS2BGR_FULL.v' class='invisible'><code>HLS2BGR_FULL</code></span></span><span id="variant.HLS2RGB_FULL" class="variant small-section-header"><a href="#variant.HLS2RGB_FULL" class="anchor field"></a><span id='HLS2RGB_FULL.v' class='invisible'><code>HLS2RGB_FULL</code></span></span><span id="variant.LBGR2Lab" class="variant small-section-header"><a href="#variant.LBGR2Lab" class="anchor field"></a><span id='LBGR2Lab.v' class='invisible'><code>LBGR2Lab</code></span></span><span id="variant.LRGB2Lab" class="variant small-section-header"><a href="#variant.LRGB2Lab" class="anchor field"></a><span id='LRGB2Lab.v' class='invisible'><code>LRGB2Lab</code></span></span><span id="variant.LBGR2Luv" class="variant small-section-header"><a href="#variant.LBGR2Luv" class="anchor field"></a><span id='LBGR2Luv.v' class='invisible'><code>LBGR2Luv</code></span></span><span id="variant.LRGB2Luv" class="variant small-section-header"><a href="#variant.LRGB2Luv" class="anchor field"></a><span id='LRGB2Luv.v' class='invisible'><code>LRGB2Luv</code></span></span><span id="variant.Lab2LBGR" class="variant small-section-header"><a href="#variant.Lab2LBGR" class="anchor field"></a><span id='Lab2LBGR.v' class='invisible'><code>Lab2LBGR</code></span></span><span id="variant.Lab2LRGB" class="variant small-section-header"><a href="#variant.Lab2LRGB" class="anchor field"></a><span id='Lab2LRGB.v' class='invisible'><code>Lab2LRGB</code></span></span><span id="variant.Luv2LBGR" class="variant small-section-header"><a href="#variant.Luv2LBGR" class="anchor field"></a><span id='Luv2LBGR.v' class='invisible'><code>Luv2LBGR</code></span></span><span id="variant.Luv2LRGB" class="variant small-section-header"><a href="#variant.Luv2LRGB" class="anchor field"></a><span id='Luv2LRGB.v' class='invisible'><code>Luv2LRGB</code></span></span><span id="variant.BGR2YUV" class="variant small-section-header"><a href="#variant.BGR2YUV" class="anchor field"></a><span id='BGR2YUV.v' class='invisible'><code>BGR2YUV</code></span></span><span id="variant.RGB2YUV" class="variant small-section-header"><a href="#variant.RGB2YUV" class="anchor field"></a><span id='RGB2YUV.v' class='invisible'><code>RGB2YUV</code></span></span><span id="variant.YUV2BGR" class="variant small-section-header"><a href="#variant.YUV2BGR" class="anchor field"></a><span id='YUV2BGR.v' class='invisible'><code>YUV2BGR</code></span></span><span id="variant.YUV2RGB" class="variant small-section-header"><a href="#variant.YUV2RGB" class="anchor field"></a><span id='YUV2RGB.v' class='invisible'><code>YUV2RGB</code></span></span><span id="variant.YUV2RGB_NV12" class="variant small-section-header"><a href="#variant.YUV2RGB_NV12" class="anchor field"></a><span id='YUV2RGB_NV12.v' class='invisible'><code>YUV2RGB_NV12</code></span></span><span id="variant.YUV2BGR_NV12" class="variant small-section-header"><a href="#variant.YUV2BGR_NV12" class="anchor field"></a><span id='YUV2BGR_NV12.v' class='invisible'><code>YUV2BGR_NV12</code></span></span><span id="variant.YUV2RGB_NV21" class="variant small-section-header"><a href="#variant.YUV2RGB_NV21" class="anchor field"></a><span id='YUV2RGB_NV21.v' class='invisible'><code>YUV2RGB_NV21</code></span></span><span id="variant.YUV2BGR_NV21" class="variant small-section-header"><a href="#variant.YUV2BGR_NV21" class="anchor field"></a><span id='YUV2BGR_NV21.v' class='invisible'><code>YUV2BGR_NV21</code></span></span><span id="variant.YUV2RGBA_NV12" class="variant small-section-header"><a href="#variant.YUV2RGBA_NV12" class="anchor field"></a><span id='YUV2RGBA_NV12.v' class='invisible'><code>YUV2RGBA_NV12</code></span></span><span id="variant.YUV2BGRA_NV12" class="variant small-section-header"><a href="#variant.YUV2BGRA_NV12" class="anchor field"></a><span id='YUV2BGRA_NV12.v' class='invisible'><code>YUV2BGRA_NV12</code></span></span><span id="variant.YUV2RGBA_NV21" class="variant small-section-header"><a href="#variant.YUV2RGBA_NV21" class="anchor field"></a><span id='YUV2RGBA_NV21.v' class='invisible'><code>YUV2RGBA_NV21</code></span></span><span id="variant.YUV2BGRA_NV21" class="variant small-section-header"><a href="#variant.YUV2BGRA_NV21" class="anchor field"></a><span id='YUV2BGRA_NV21.v' class='invisible'><code>YUV2BGRA_NV21</code></span></span><span id="variant.YUV2RGB_YV12" class="variant small-section-header"><a href="#variant.YUV2RGB_YV12" class="anchor field"></a><span id='YUV2RGB_YV12.v' class='invisible'><code>YUV2RGB_YV12</code></span></span><span id="variant.YUV2BGR_YV12" class="variant small-section-header"><a href="#variant.YUV2BGR_YV12" class="anchor field"></a><span id='YUV2BGR_YV12.v' class='invisible'><code>YUV2BGR_YV12</code></span></span><span id="variant.YUV2RGB_IYUV" class="variant small-section-header"><a href="#variant.YUV2RGB_IYUV" class="anchor field"></a><span id='YUV2RGB_IYUV.v' class='invisible'><code>YUV2RGB_IYUV</code></span></span><span id="variant.YUV2BGR_IYUV" class="variant small-section-header"><a href="#variant.YUV2BGR_IYUV" class="anchor field"></a><span id='YUV2BGR_IYUV.v' class='invisible'><code>YUV2BGR_IYUV</code></span></span><span id="variant.YUV2RGBA_YV12" class="variant small-section-header"><a href="#variant.YUV2RGBA_YV12" class="anchor field"></a><span id='YUV2RGBA_YV12.v' class='invisible'><code>YUV2RGBA_YV12</code></span></span><span id="variant.YUV2BGRA_YV12" class="variant small-section-header"><a href="#variant.YUV2BGRA_YV12" class="anchor field"></a><span id='YUV2BGRA_YV12.v' class='invisible'><code>YUV2BGRA_YV12</code></span></span><span id="variant.YUV2RGBA_IYUV" class="variant small-section-header"><a href="#variant.YUV2RGBA_IYUV" class="anchor field"></a><span id='YUV2RGBA_IYUV.v' class='invisible'><code>YUV2RGBA_IYUV</code></span></span><span id="variant.YUV2BGRA_IYUV" class="variant small-section-header"><a href="#variant.YUV2BGRA_IYUV" class="anchor field"></a><span id='YUV2BGRA_IYUV.v' class='invisible'><code>YUV2BGRA_IYUV</code></span></span><span id="variant.YUV2GRAY_420" class="variant small-section-header"><a href="#variant.YUV2GRAY_420" class="anchor field"></a><span id='YUV2GRAY_420.v' class='invisible'><code>YUV2GRAY_420</code></span></span><span id="variant.YUV2RGB_UYVY" class="variant small-section-header"><a href="#variant.YUV2RGB_UYVY" class="anchor field"></a><span id='YUV2RGB_UYVY.v' class='invisible'><code>YUV2RGB_UYVY</code></span></span><span id="variant.YUV2BGR_UYVY" class="variant small-section-header"><a href="#variant.YUV2BGR_UYVY" class="anchor field"></a><span id='YUV2BGR_UYVY.v' class='invisible'><code>YUV2BGR_UYVY</code></span></span><span id="variant.YUV2RGBA_UYVY" class="variant small-section-header"><a href="#variant.YUV2RGBA_UYVY" class="anchor field"></a><span id='YUV2RGBA_UYVY.v' class='invisible'><code>YUV2RGBA_UYVY</code></span></span><span id="variant.YUV2BGRA_UYVY" class="variant small-section-header"><a href="#variant.YUV2BGRA_UYVY" class="anchor field"></a><span id='YUV2BGRA_UYVY.v' class='invisible'><code>YUV2BGRA_UYVY</code></span></span><span id="variant.YUV2RGB_YUY2" class="variant small-section-header"><a href="#variant.YUV2RGB_YUY2" class="anchor field"></a><span id='YUV2RGB_YUY2.v' class='invisible'><code>YUV2RGB_YUY2</code></span></span><span id="variant.YUV2BGR_YUY2" class="variant small-section-header"><a href="#variant.YUV2BGR_YUY2" class="anchor field"></a><span id='YUV2BGR_YUY2.v' class='invisible'><code>YUV2BGR_YUY2</code></span></span><span id="variant.YUV2RGB_YVYU" class="variant small-section-header"><a href="#variant.YUV2RGB_YVYU" class="anchor field"></a><span id='YUV2RGB_YVYU.v' class='invisible'><code>YUV2RGB_YVYU</code></span></span><span id="variant.YUV2BGR_YVYU" class="variant small-section-header"><a href="#variant.YUV2BGR_YVYU" class="anchor field"></a><span id='YUV2BGR_YVYU.v' class='invisible'><code>YUV2BGR_YVYU</code></span></span><span id="variant.YUV2RGBA_YUY2" class="variant small-section-header"><a href="#variant.YUV2RGBA_YUY2" class="anchor field"></a><span id='YUV2RGBA_YUY2.v' class='invisible'><code>YUV2RGBA_YUY2</code></span></span><span id="variant.YUV2BGRA_YUY2" class="variant small-section-header"><a href="#variant.YUV2BGRA_YUY2" class="anchor field"></a><span id='YUV2BGRA_YUY2.v' class='invisible'><code>YUV2BGRA_YUY2</code></span></span><span id="variant.YUV2RGBA_YVYU" class="variant small-section-header"><a href="#variant.YUV2RGBA_YVYU" class="anchor field"></a><span id='YUV2RGBA_YVYU.v' class='invisible'><code>YUV2RGBA_YVYU</code></span></span><span id="variant.YUV2BGRA_YVYU" class="variant small-section-header"><a href="#variant.YUV2BGRA_YVYU" class="anchor field"></a><span id='YUV2BGRA_YVYU.v' class='invisible'><code>YUV2BGRA_YVYU</code></span></span><span id="variant.YUV2GRAY_UYVY" class="variant small-section-header"><a href="#variant.YUV2GRAY_UYVY" class="anchor field"></a><span id='YUV2GRAY_UYVY.v' class='invisible'><code>YUV2GRAY_UYVY</code></span></span><span id="variant.YUV2GRAY_YUY2" class="variant small-section-header"><a href="#variant.YUV2GRAY_YUY2" class="anchor field"></a><span id='YUV2GRAY_YUY2.v' class='invisible'><code>YUV2GRAY_YUY2</code></span></span><span id="variant.RGBA2mRGBA" class="variant small-section-header"><a href="#variant.RGBA2mRGBA" class="anchor field"></a><span id='RGBA2mRGBA.v' class='invisible'><code>RGBA2mRGBA</code></span></span><span id="variant.mRGBA2RGBA" class="variant small-section-header"><a href="#variant.mRGBA2RGBA" class="anchor field"></a><span id='mRGBA2RGBA.v' class='invisible'><code>mRGBA2RGBA</code></span></span><span id="variant.RGB2YUV_I420" class="variant small-section-header"><a href="#variant.RGB2YUV_I420" class="anchor field"></a><span id='RGB2YUV_I420.v' class='invisible'><code>RGB2YUV_I420</code></span></span><span id="variant.BGR2YUV_I420" class="variant small-section-header"><a href="#variant.BGR2YUV_I420" class="anchor field"></a><span id='BGR2YUV_I420.v' class='invisible'><code>BGR2YUV_I420</code></span></span><span id="variant.RGBA2YUV_I420" class="variant small-section-header"><a href="#variant.RGBA2YUV_I420" class="anchor field"></a><span id='RGBA2YUV_I420.v' class='invisible'><code>RGBA2YUV_I420</code></span></span><span id="variant.BGRA2YUV_I420" class="variant small-section-header"><a href="#variant.BGRA2YUV_I420" class="anchor field"></a><span id='BGRA2YUV_I420.v' class='invisible'><code>BGRA2YUV_I420</code></span></span><span id="variant.RGB2YUV_YV12" class="variant small-section-header"><a href="#variant.RGB2YUV_YV12" class="anchor field"></a><span id='RGB2YUV_YV12.v' class='invisible'><code>RGB2YUV_YV12</code></span></span><span id="variant.BGR2YUV_YV12" class="variant small-section-header"><a href="#variant.BGR2YUV_YV12" class="anchor field"></a><span id='BGR2YUV_YV12.v' class='invisible'><code>BGR2YUV_YV12</code></span></span><span id="variant.RGBA2YUV_YV12" class="variant small-section-header"><a href="#variant.RGBA2YUV_YV12" class="anchor field"></a><span id='RGBA2YUV_YV12.v' class='invisible'><code>RGBA2YUV_YV12</code></span></span><span id="variant.BGRA2YUV_YV12" class="variant small-section-header"><a href="#variant.BGRA2YUV_YV12" class="anchor field"></a><span id='BGRA2YUV_YV12.v' class='invisible'><code>BGRA2YUV_YV12</code></span></span><span id="variant.BayerBG2BGR" class="variant small-section-header"><a href="#variant.BayerBG2BGR" class="anchor field"></a><span id='BayerBG2BGR.v' class='invisible'><code>BayerBG2BGR</code></span></span><span id="variant.BayerGB2BGR" class="variant small-section-header"><a href="#variant.BayerGB2BGR" class="anchor field"></a><span id='BayerGB2BGR.v' class='invisible'><code>BayerGB2BGR</code></span></span><span id="variant.BayerRG2BGR" class="variant small-section-header"><a href="#variant.BayerRG2BGR" class="anchor field"></a><span id='BayerRG2BGR.v' class='invisible'><code>BayerRG2BGR</code></span></span><span id="variant.BayerGR2BGR" class="variant small-section-header"><a href="#variant.BayerGR2BGR" class="anchor field"></a><span id='BayerGR2BGR.v' class='invisible'><code>BayerGR2BGR</code></span></span><span id="variant.BayerBG2GRAY" class="variant small-section-header"><a href="#variant.BayerBG2GRAY" class="anchor field"></a><span id='BayerBG2GRAY.v' class='invisible'><code>BayerBG2GRAY</code></span></span><span id="variant.BayerGB2GRAY" class="variant small-section-header"><a href="#variant.BayerGB2GRAY" class="anchor field"></a><span id='BayerGB2GRAY.v' class='invisible'><code>BayerGB2GRAY</code></span></span><span id="variant.BayerRG2GRAY" class="variant small-section-header"><a href="#variant.BayerRG2GRAY" class="anchor field"></a><span id='BayerRG2GRAY.v' class='invisible'><code>BayerRG2GRAY</code></span></span><span id="variant.BayerGR2GRAY" class="variant small-section-header"><a href="#variant.BayerGR2GRAY" class="anchor field"></a><span id='BayerGR2GRAY.v' class='invisible'><code>BayerGR2GRAY</code></span></span><span id="variant.BayerBG2BGR_VNG" class="variant small-section-header"><a href="#variant.BayerBG2BGR_VNG" class="anchor field"></a><span id='BayerBG2BGR_VNG.v' class='invisible'><code>BayerBG2BGR_VNG</code></span></span><span id="variant.BayerGB2BGR_VNG" class="variant small-section-header"><a href="#variant.BayerGB2BGR_VNG" class="anchor field"></a><span id='BayerGB2BGR_VNG.v' class='invisible'><code>BayerGB2BGR_VNG</code></span></span><span id="variant.BayerRG2BGR_VNG" class="variant small-section-header"><a href="#variant.BayerRG2BGR_VNG" class="anchor field"></a><span id='BayerRG2BGR_VNG.v' class='invisible'><code>BayerRG2BGR_VNG</code></span></span><span id="variant.BayerGR2BGR_VNG" class="variant small-section-header"><a href="#variant.BayerGR2BGR_VNG" class="anchor field"></a><span id='BayerGR2BGR_VNG.v' class='invisible'><code>BayerGR2BGR_VNG</code></span></span><span id="variant.BayerBG2BGR_EA" class="variant small-section-header"><a href="#variant.BayerBG2BGR_EA" class="anchor field"></a><span id='BayerBG2BGR_EA.v' class='invisible'><code>BayerBG2BGR_EA</code></span></span><span id="variant.BayerGB2BGR_EA" class="variant small-section-header"><a href="#variant.BayerGB2BGR_EA" class="anchor field"></a><span id='BayerGB2BGR_EA.v' class='invisible'><code>BayerGB2BGR_EA</code></span></span><span id="variant.BayerRG2BGR_EA" class="variant small-section-header"><a href="#variant.BayerRG2BGR_EA" class="anchor field"></a><span id='BayerRG2BGR_EA.v' class='invisible'><code>BayerRG2BGR_EA</code></span></span><span id="variant.BayerGR2BGR_EA" class="variant small-section-header"><a href="#variant.BayerGR2BGR_EA" class="anchor field"></a><span id='BayerGR2BGR_EA.v' class='invisible'><code>BayerGR2BGR_EA</code></span></span><span id="variant.COLORCVT_MAX" class="variant small-section-header"><a href="#variant.COLORCVT_MAX" class="anchor field"></a><span id='COLORCVT_MAX.v' class='invisible'><code>COLORCVT_MAX</code></span></span>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Debug' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="enum" href="../../rustcv/imgproc/enum.ColorConversion.html" title="enum rustcv::imgproc::ColorConversion">ColorConversion</a></code><a href='#impl-Debug' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/imgproc.rs.html#20' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/imgproc.rs.html#20' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>
+</div></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="enum" href="../../rustcv/imgproc/enum.ColorConversion.html" title="enum rustcv::imgproc::ColorConversion">ColorConversion</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/imgproc.rs.html#20' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="enum" href="../../rustcv/imgproc/enum.ColorConversion.html" title="enum rustcv::imgproc::ColorConversion">ColorConversion</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/imgproc.rs.html#20' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 id='impl-Copy' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="enum" href="../../rustcv/imgproc/enum.ColorConversion.html" title="enum rustcv::imgproc::ColorConversion">ColorConversion</a></code><a href='#impl-Copy' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/imgproc.rs.html#20' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 id='impl-Eq' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html" title="trait core::cmp::Eq">Eq</a> for <a class="enum" href="../../rustcv/imgproc/enum.ColorConversion.html" title="enum rustcv::imgproc::ColorConversion">ColorConversion</a></code><a href='#impl-Eq' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/imgproc.rs.html#20' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 id='impl-PartialEq' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a> for <a class="enum" href="../../rustcv/imgproc/enum.ColorConversion.html" title="enum rustcv::imgproc::ColorConversion">ColorConversion</a></code><a href='#impl-PartialEq' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/imgproc.rs.html#20' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class="method"><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class="enum" href="../../rustcv/imgproc/enum.ColorConversion.html" title="enum rustcv::imgproc::ColorConversion">ColorConversion</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/imgproc.rs.html#20' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class="method"><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Rhs) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/cmp.rs.html#121' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 id='impl-Hash' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html" title="trait core::hash::Hash">Hash</a> for <a class="enum" href="../../rustcv/imgproc/enum.ColorConversion.html" title="enum rustcv::imgproc::ColorConversion">ColorConversion</a></code><a href='#impl-Hash' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/imgproc.rs.html#20' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.hash' class="method"><span id='hash.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html#tymethod.hash' class='fnname'>hash</a>&lt;__H:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/hash/trait.Hasher.html" title="trait core::hash::Hasher">Hasher</a>&gt;(&amp;self, __arg_0: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>__H)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rustcv/imgproc.rs.html#20' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Feeds this value into the given [<code>Hasher</code>]. <a href="https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html#tymethod.hash">Read more</a></p>
+</div><h4 id='method.hash_slice' class="method"><span id='hash_slice.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html#method.hash_slice' class='fnname'>hash_slice</a>&lt;H&gt;(data: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[Self]</a>, state: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>H) <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;H: <a class="trait" href="https://doc.rust-lang.org/nightly/core/hash/trait.Hasher.html" title="trait core::hash::Hasher">Hasher</a>,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.3.0'>1.3.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/hash/mod.rs.html#202-208' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Feeds a slice of this type into the given [<code>Hasher</code>]. <a href="https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html#method.hash_slice">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt><kbd>?</kbd></dt>
+                    <dd>Show this help dialog</dd>
+                    <dt><kbd>S</kbd></dt>
+                    <dd>Focus the search field</dd>
+                    <dt><kbd>↑</kbd></dt>
+                    <dd>Move up in search results</dd>
+                    <dt><kbd>↓</kbd></dt>
+                    <dd>Move down in search results</dd>
+                    <dt><kbd>↹</kbd></dt>
+                    <dd>Switch tab</dd>
+                    <dt><kbd>&#9166;</kbd></dt>
+                    <dd>Go to active search result</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "rustcv";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["CascadeClassifier","Cascade classifier class for object detection."]]});

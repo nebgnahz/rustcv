@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["GpuCascade","Data structure that performs object detection with a cascade classifier."],["GpuMat","Base storage class for GPU memory with reference counting."]]});
